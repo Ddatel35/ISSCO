@@ -1,0 +1,32 @@
+﻿<Page x:Class="LaborExchange.VacanciesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LaborExchange"
+      mc:Ignorable="d" 
+      d:DesignHeight="648" d:DesignWidth="1400"
+      Title="Vacancies">
+    <Grid>
+        <Canvas Width="1400" Height="684">
+            <Button Content="Информация о гражданах" Click="InfFrame" Canvas.Left="1156" Canvas.Top="15" Width="218" Height="26"/>
+            <Button x:Name="AddVac" Content="Добавить" Click="AddVac_Btn" Canvas.Left="1048" Canvas.Top="15" Width="90" Height="26"/>
+            <Button x:Name="EditVac" Content="Редактировать" Click="EditVac_Btn" Canvas.Left="918" Canvas.Top="15" Width="111" Height="26"/>
+            <Button x:Name="DelVac" Content="Удалить" Click="DelVac_Btn" Canvas.Left="809" Canvas.Top="15" Width="90" Height="26"/>
+            <Button x:Name="ChoVac" Content="Выбрать" Click="ChoVac_Btn" Canvas.Left="1048" Canvas.Top="15" Width="90" Height="26"/>
+
+            <TextBlock Text="Таблица с вакансиями" FontSize="16" Canvas.Left="10" Canvas.Top="19"/>
+
+            <DataGrid x:Name="DGrid" AutoGenerateColumns="False" IsReadOnly="True" Canvas.Top="56" Canvas.Left="10" Height="599" Width="1364">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Требуется" Binding="{Binding Name}" Width="600" />
+                    <DataGridTextColumn Header="Зарплата" Binding="{Binding Sallary}" Width="100" />
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="190" />
+                    <DataGridTextColumn Header="Кол-во мест" Binding="{Binding NumberOfPlaces}" Width="90" />
+                    <DataGridTextColumn Header="Образование" Binding="{Binding RequeredEdications}" Width="*" />
+                    <DataGridTextColumn Header="Рабочий график" Binding="{Binding Schedule}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Canvas>
+    </Grid>
+</Page>

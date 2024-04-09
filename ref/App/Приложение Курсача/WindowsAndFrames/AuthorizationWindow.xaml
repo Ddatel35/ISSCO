@@ -1,0 +1,29 @@
+﻿<Window x:Class="LaborExchange.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaborExchange"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="280" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Canvas>
+            <Image Source="/Resourses/logo.png" Canvas.Left="25" Canvas.Top="18" Width="225" Height="60"/>
+            <TextBlock Text="Авторизация" FontSize="20" Canvas.Left="295" Canvas.Top="30" Width="159" Height="25"/>
+
+            <TextBlock Text="Логин" Canvas.Left="25" Canvas.Top="91"/>
+            <TextBox x:Name="LogTb" KeyUp="LogBlock_Up" IsEnabled="True" Canvas.Left="25" Canvas.Top="112" Width="435" Height="20"/>
+
+            <TextBlock Text="Пароль" Canvas.Left="25" Canvas.Top="141"/>
+            <PasswordBox x:Name="PassB" KeyUp="PassBlock_Up" IsEnabled="False" Canvas.Left="25" Canvas.Top="161" Height="20" Width="435"/>
+
+            <TextBlock Text="Код" Canvas.Left="27" Canvas.Top="187"/>
+            <TextBlock x:Name="CodeBlock" Canvas.Left="60" Canvas.Top="187"/>
+            <TextBox x:Name="CodeBox" KeyUp="CodeBlock_Up" IsEnabled="False" Canvas.Left="25" Canvas.Top="208" Width="120" Height="20"/>
+
+            <Button x:Name="RefreshBtn" Content="Обновить" Click="Refresh" IsEnabled="False" Canvas.Left="156" Canvas.Top="208" Width="70" Height="20"/>
+            <Button x:Name="EnterBtn" Content="Войти" Click="Entering" IsEnabled="False" Canvas.Left="304" Canvas.Top="208" Width="72" Height="20"/>
+            <Button Content="Отмена" Click="Cancel_Btm" Canvas.Left="388" Canvas.Top="208" Width="72"/>
+        </Canvas>
+    </Grid>
+</Window>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="Supplies.Windows.WorkerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supplies.Windows"
+        mc:Ignorable="d"
+        Title="Основное окно" Height="800" Width="1400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="750*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" Background="red" CornerRadius="3" BorderThickness="1" Margin="0,-6,0,0"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+
+    </Grid>
+</Window>
