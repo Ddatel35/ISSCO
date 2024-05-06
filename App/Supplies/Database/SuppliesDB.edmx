@@ -67,7 +67,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="phone_number" Type="bigint" Nullable="false" />
+          <Property Name="phoneNumber" Type="bigint" Nullable="false" />
           <Property Name="deliveryTime" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -255,7 +255,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="phone_number" Type="Int64" Nullable="false" />
+          <Property Name="phoneNumber" Type="Int64" Nullable="false" />
           <Property Name="deliveryTime" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Components" Relationship="Self.FK_Components_Supplies" FromRole="Supplies" ToRole="Components" />
         </EntityType>
@@ -447,7 +447,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
                 <ScalarProperty Name="deliveryTime" ColumnName="deliveryTime" />
               </MappingFragment>
             </EntityTypeMapping>

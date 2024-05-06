@@ -15,7 +15,6 @@ namespace Supplies.Database
     
     public partial class SuppliesDBEntities : DbContext
     {
-
         private static SuppliesDBEntities _context;
 
         public static SuppliesDBEntities GetContext()

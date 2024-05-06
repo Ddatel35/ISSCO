@@ -23,7 +23,7 @@ namespace Supplies.Database
         public int ID { get; set; }
         public string name { get; set; }
         public string address { get; set; }
-        public long phone_number { get; set; }
+        public long phoneNumber { get; set; }
         public int deliveryTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

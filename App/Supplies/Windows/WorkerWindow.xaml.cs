@@ -27,5 +27,25 @@ namespace Supplies.Windows
             MainFrame.Navigate(new OrdersPage());
             Manager.MainFrame = MainFrame;
         }
+
+        private void GoTo_Clients(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ClientsPage());
+        }
+
+        private void GoTo_Orders(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new OrdersPage());
+        }
+
+        private void GoTo_Components(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ComponentsPage());
+        }
+
+        private void GoTo_Supplies(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new SuppliesPage());
+        }
     }
 }

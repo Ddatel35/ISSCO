@@ -19,3 +19,17 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\WorkerWindow.
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\WorkerWindow.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\OrdersPage.g.cs
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\OrdersPage.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.dll
+C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.xml
+C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies_Content.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies.csproj.CopyComplete
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\ClientsPage.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\ComponentsPage.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\SuppliesPage.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\ClientsPage.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\ComponentsPage.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\SuppliesPage.baml

@@ -14,14 +14,14 @@
             <RowDefinition Height="650*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="Заказы" VerticalAlignment="Center" Height="18"/>
-        <DataGrid Grid.Row="1">
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" TextWrapping="Wrap" Text="Заказы" VerticalAlignment="Center" Height="18"/>
+        <DataGrid x:Name="DGrid" Grid.Row="1" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="1" Width="*"/>
-                <DataGridTextColumn Header="1" Width="*"/>
-                <DataGridTextColumn Header="1" Width="*"/>
-                <DataGridTextColumn Header="1" Width="*"/>
-                <DataGridTextColumn Header="1" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Clients.fullName}" Header="ФИО клиента" Width="*"/>
+                <DataGridTextColumn Binding="{Binding createDate, StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" Header="Дата создания" Width="*"/>
+                <DataGridTextColumn Binding="{Binding deliveryDate}" Header="Дата доставки" Width="*"/>
+                <DataGridTextColumn Binding="{Binding fullPrice}" Header="Сумма заказа" Width="*"/>
+                <DataGridTextColumn Binding="{Binding orderStatus, Converter={StaticResource IntToStringConv}}" Header="Статус" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 

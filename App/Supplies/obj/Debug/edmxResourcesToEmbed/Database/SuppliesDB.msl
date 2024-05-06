@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SuppliesDBModelContainer" CdmEntityContainer="SuppliesDBEntities">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Components">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Components">
+        <MappingFragment StoreEntitySet="Components">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="supplies_ID" ColumnName="supplies_ID" />
+          <ScalarProperty Name="type_ID" ColumnName="type_ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Components_type">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Components_type">
+        <MappingFragment StoreEntitySet="Components_type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="client_ID" ColumnName="client_ID" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+          <ScalarProperty Name="fullPrice" ColumnName="fullPrice" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplies">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Supplies">
+        <MappingFragment StoreEntitySet="Supplies">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="deliveryTime" ColumnName="deliveryTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ordered_components">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Ordered_components">
+        <MappingFragment StoreEntitySet="Ordered_components">
+          <ScalarProperty Name="orders_ID" ColumnName="orders_ID" />
+          <ScalarProperty Name="components_ID" ColumnName="components_ID" />
+          <ScalarProperty Name="checkCode" ColumnName="checkCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -118,14 +118,35 @@
     <Compile Include="Database\Users.cs">
       <DependentUpon>SuppliesDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Frames\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ComponentsPage.xaml.cs">
+      <DependentUpon>ComponentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frames\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\SuppliesPage.xaml.cs">
+      <DependentUpon>SuppliesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Windows\WorkerWindow.xaml.cs">
       <DependentUpon>WorkerWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Frames\ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frames\ComponentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Frames\OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frames\SuppliesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,19 +217,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Database\SuppliesDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SuppliesDB.Context.cs</LastGenOutput>
       <DependentUpon>SuppliesDB.edmx</DependentUpon>
+      <LastGenOutput>SuppliesDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\SuppliesDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SuppliesDB.edmx</DependentUpon>
       <LastGenOutput>SuppliesDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
