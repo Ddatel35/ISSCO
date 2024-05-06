@@ -33,3 +33,7 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\SuppliesPage.g
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\ClientsPage.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\ComponentsPage.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\SuppliesPage.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\ComponentsTypeWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\ComponentsTypeWindow.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewComponentsTypeWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewComponentsTypeWindow.baml

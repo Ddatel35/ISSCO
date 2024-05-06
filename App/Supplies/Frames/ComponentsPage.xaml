@@ -14,7 +14,10 @@
             <RowDefinition Height="650*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+        
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" TextWrapping="Wrap" Text="Комплектующие" VerticalAlignment="Center" Height="18"/>
+        <Button Content="Типы комплектующих" Click="GoToComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Center" Width="165"/>
+        
         <DataGrid x:Name="DGrid" Grid.Row="1" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Components_type.name}" Header="Тип" Width="*"/>

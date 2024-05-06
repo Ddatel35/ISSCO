@@ -1,4 +1,5 @@
 ﻿using Supplies.Database;
+using Supplies.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,12 @@ namespace Supplies.Frames
         private void UpdateTable()
         {
             DGrid.ItemsSource = SuppliesDBEntities.GetContext().Components.ToList();
+        }
+
+        private void GoToComponentsType(object sender, RoutedEventArgs e)
+        {
+            ComponentsTypeWindow CTW = new ComponentsTypeWindow();
+            CTW.Show();
         }
     }
 }
