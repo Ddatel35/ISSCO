@@ -50,8 +50,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,6 +79,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\Clients.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Components.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Components_type.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Ordered_components.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Orders.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Roles.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Supplies.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SuppliesDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuppliesDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SuppliesDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SuppliesDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuppliesDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Users.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Frames\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
@@ -116,6 +164,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Database\SuppliesDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SuppliesDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\SuppliesDB.edmx.diagram">
+      <DependentUpon>SuppliesDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,6 +194,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\SuppliesDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SuppliesDB.Context.cs</LastGenOutput>
+      <DependentUpon>SuppliesDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\SuppliesDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SuppliesDB.edmx</DependentUpon>
+      <LastGenOutput>SuppliesDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

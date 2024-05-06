@@ -220,3 +220,40 @@ F:\Колледж\Egorov\КП 4 курс\Приложение курсача ш�
 F:\Колледж\Egorov\КП 4 курс\Приложение курсача шифрование крутое классное\Приложение Курсача\obj\Debug\LaborExchange.csproj.CopyComplete
 F:\Колледж\Egorov\КП 4 курс\Приложение курсача шифрование крутое классное\Приложение Курсача\obj\Debug\Приложение Курсача.exe
 F:\Колледж\Egorov\КП 4 курс\Приложение курсача шифрование крутое классное\Приложение Курсача\obj\Debug\Приложение Курсача.pdb
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\Приложение Курсача.exe.config
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\Приложение Курсача.exe
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\Приложение Курсача.pdb
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\EntityFramework.dll
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\EntityFramework.xml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\LaborExchange.csproj.AssemblyReference.cache
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\LaborExchange.csproj.SuggestedBindingRedirects.cache
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\LaborExchange.csproj.ResolveComReference.cache
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\AddCitizenWindow.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\AddVacanciesWindow.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\InformationPage.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\AuthorizationWindow.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\ReportPage.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\VacanciesPage.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\WorkerWindow.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\App.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение Курсача_Content.g.cs
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение Курсача_MarkupCompile.cache
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение Курсача_MarkupCompile.lref
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\App.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\AddCitizenWindow.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\AddVacanciesWindow.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\InformationPage.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\AuthorizationWindow.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\ReportPage.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\VacanciesPage.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\WindowsAndFrames\WorkerWindow.baml
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение Курсача.g.resources
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение_Курсача.Properties.Resources.resources
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\LaborExchange.csproj.GenerateResource.cache
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\LaborExchange.csproj.CoreCompileInputs.cache
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\LaborExchange.csproj.CopyComplete
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение Курсача.exe
+C:\Users\shume\Desktop\Диплом\ref\App\Приложение Курсача\obj\Debug\Приложение Курсача.pdb

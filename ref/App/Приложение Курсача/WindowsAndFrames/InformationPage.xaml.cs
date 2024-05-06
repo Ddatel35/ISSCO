@@ -88,7 +88,7 @@ namespace LaborExchange
             {
                 AddCitizenWindow edit = new AddCitizenWindow(DGrid.SelectedItem as Citizen);
                 edit.ShowDialog();
-                db.SaveChanges();
+                //db.SaveChanges();
             }
             else
             {
