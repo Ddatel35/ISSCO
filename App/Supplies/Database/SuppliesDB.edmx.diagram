@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="SuppliesDBModel.Components_type" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SuppliesDBModel.Orders" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="SuppliesDBModel.Roles" Width="1.5" PointX="2.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SuppliesDBModel.Supplies" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuppliesDBModel.SuppliesT" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SuppliesDBModel.Users" Width="1.5" PointX="5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SuppliesDBModel.Ordered_components" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="SuppliesDBModel.FK_Orders_Clients" ManuallyRouted="false" />

@@ -97,9 +97,6 @@
     <Compile Include="Database\Roles.cs">
       <DependentUpon>SuppliesDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\Supplies.cs">
-      <DependentUpon>SuppliesDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\SuppliesDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,6 +111,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SuppliesDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\SuppliesT.cs">
+      <DependentUpon>SuppliesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Users.cs">
       <DependentUpon>SuppliesDB.tt</DependentUpon>
@@ -136,6 +136,9 @@
     </Compile>
     <Compile Include="Windows\AddNewComponentsTypeWindow.xaml.cs">
       <DependentUpon>AddNewComponentsTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddNewSupplieWindow.xaml.cs">
+      <DependentUpon>AddNewSupplieWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ComponentsTypeWindow.xaml.cs">
       <DependentUpon>ComponentsTypeWindow.xaml</DependentUpon>
@@ -164,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddNewComponentsTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddNewSupplieWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
 ﻿using Supplies.Database;
+using Supplies.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,57 @@ namespace Supplies.Frames
         private void UpdateTable()
         {
             DGrid.ItemsSource = SuppliesDBEntities.GetContext().Supplies.ToList();
+        }
+
+        private void Add_Supply(object sender, RoutedEventArgs e)
+        {
+            AddNewSupplieWindow ANSW = new AddNewSupplieWindow(null);
+            ANSW.ShowDialog();
+            UpdateTable();
+        }
+
+        private void Edit_Supply(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                AddNewSupplieWindow ANSW = new AddNewSupplieWindow(DGrid.SelectedItem as SuppliesT);
+                ANSW.ShowDialog();
+            }
+            else
+                MessageBox.Show("Выберите редактируемого клиенита!");
+
+            UpdateTable();
+        }
+
+        private void Del_Supply(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                var Removing = DGrid.SelectedItems.Cast<SuppliesT>().ToList();
+
+                if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        foreach (var rem in Removing)
+                        {
+                            SuppliesDBEntities.GetContext().Supplies.Remove(rem);
+                        }
+                        SuppliesDBEntities.GetContext().SaveChanges();
+                        MessageBox.Show("Данные удаленны");
+                        UpdateTable();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите удаляемоого руководителя!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

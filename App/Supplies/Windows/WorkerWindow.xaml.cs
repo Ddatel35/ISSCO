@@ -30,7 +30,8 @@ namespace Supplies.Windows
 
         private void GoTo_Clients(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ClientsPage());
+         //   MainFrame.Navigate(new ClientsPage());\
+            MainFrame.Content = new ClientsPage();
         }
 
         private void GoTo_Orders(object sender, RoutedEventArgs e)

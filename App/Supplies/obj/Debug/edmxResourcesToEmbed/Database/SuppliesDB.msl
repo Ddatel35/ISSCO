@@ -51,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Supplies">
-      <EntityTypeMapping TypeName="SuppliesDBModel.Supplies">
+      <EntityTypeMapping TypeName="SuppliesDBModel.SuppliesT">
         <MappingFragment StoreEntitySet="Supplies">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="name" ColumnName="name" />

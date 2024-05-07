@@ -52,7 +52,7 @@
     <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
   </EntityType>
-  <EntityType Name="Supplies">
+  <EntityType Name="SuppliesT">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -109,7 +109,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Components_Supplies">
-    <End Role="Supplies" Type="Self.Supplies" Multiplicity="1" />
+    <End Role="Supplies" Type="SuppliesDBModel.SuppliesT" Multiplicity="1" />
     <End Role="Components" Type="Self.Components" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Supplies">
@@ -162,7 +162,7 @@
     <EntitySet Name="Components_type" EntityType="Self.Components_type" />
     <EntitySet Name="Orders" EntityType="Self.Orders" />
     <EntitySet Name="Roles" EntityType="Self.Roles" />
-    <EntitySet Name="Supplies" EntityType="Self.Supplies" />
+    <EntitySet Name="Supplies" EntityType="SuppliesDBModel.SuppliesT" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" />
     <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">

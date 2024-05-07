@@ -27,7 +27,7 @@ namespace Supplies.Database
         public int price { get; set; }
     
         public virtual Components_type Components_type { get; set; }
-        public virtual Supplies Supplies { get; set; }
+        public virtual SuppliesT Supplies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ordered_components> Ordered_components { get; set; }
     }

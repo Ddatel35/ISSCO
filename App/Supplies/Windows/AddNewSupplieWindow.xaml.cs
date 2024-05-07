@@ -17,33 +17,33 @@ using System.Windows.Shapes;
 namespace Supplies.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для AddNewClientWindow.xaml
+    /// Логика взаимодействия для AddNewSupplieWindow.xaml
     /// </summary>
-    public partial class AddNewClientWindow : Window
+    public partial class AddNewSupplieWindow : Window
     {
-        Clients _currentClient = new Clients();
-        public AddNewClientWindow(Clients selectedClient)
+        SuppliesT _currentSupply = new SuppliesT();
+        public AddNewSupplieWindow(SuppliesT currentSupply)
         {
             InitializeComponent();
-
-            if (selectedClient != null)
+            if (currentSupply != null)
             {
-                _currentClient = selectedClient;
+                _currentSupply = currentSupply;
                 AddBtn.Content = "Сохранить";
             }
-
-            DataContext = _currentClient;
+            DataContext = _currentSupply;
         }
 
         private void Add_Client(object sender, RoutedEventArgs e)
         {
             StringBuilder Errors = new StringBuilder();
             if (FullNTB.Text == "")
-                Errors.AppendLine("Укажите ФИО клиента!");
+                Errors.AppendLine("Укажите название компании!");
             if (AddresTB.Text == "")
-                Errors.AppendLine("Укажите адрес клиента!");
+                Errors.AppendLine("Укажите адрес поставщика!");
             if (PhoneTB.Text == "")
-                Errors.AppendLine("Укажите номер телефона клиента!");
+                Errors.AppendLine("Укажите номер телефона поставщика!");
+            if (DelivTTB.Text == "")
+                Errors.AppendLine("Укажите количество дней доставки!");
 
             if (Errors.Length > 0)
             {
@@ -52,15 +52,15 @@ namespace Supplies.Windows
             }
 
 
-            if (_currentClient.ID == 0)
+            if (_currentSupply.ID == 0)
             {
-                SuppliesDBEntities.GetContext().Clients.Add(_currentClient);
+                SuppliesDBEntities.GetContext().Supplies.Add(_currentSupply);
             }
 
             try
             {
                 SuppliesDBEntities.GetContext().SaveChanges();
-                MessageBox.Show("Клиент сохранён");
+                MessageBox.Show("Поставщик сохранён");
                 Close();
             }
             catch (DbEntityValidationException ex)

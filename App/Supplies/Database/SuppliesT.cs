@@ -12,10 +12,10 @@ namespace Supplies.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplies
+    public partial class SuppliesT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplies()
+        public SuppliesT()
         {
             this.Components = new HashSet<Components>();
         }

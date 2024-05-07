@@ -39,3 +39,5 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewCompone
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewComponentsTypeWindow.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewClientWindow.g.cs
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewClientWindow.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewSupplieWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewSupplieWindow.baml
