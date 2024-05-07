@@ -1,11 +1,6 @@
-﻿C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\GeneratedInternalTypeHelper.g.i.cs
-FC:\Users\shume\Desktop\Диплом\App\Supplies\App.xaml;;
-FC:\Users\shume\Desktop\Диплом\App\Supplies\Frames\ClientsPage.xaml;;
-FC:\Users\shume\Desktop\Диплом\App\Supplies\Frames\ComponentsPage.xaml;;
-FC:\Users\shume\Desktop\Диплом\App\Supplies\Frames\OrdersPage.xaml;;
-FC:\Users\shume\Desktop\Диплом\App\Supplies\Frames\SuppliesPage.xaml;;
+﻿
+
+FC:\Users\shume\Desktop\Диплом\App\Supplies\Windows\AddNewClientWindow.xaml;;
 FC:\Users\shume\Desktop\Диплом\App\Supplies\Windows\AddNewComponentsTypeWindow.xaml;;
-FC:\Users\shume\Desktop\Диплом\App\Supplies\Windows\Authorization.xaml;;
 FC:\Users\shume\Desktop\Диплом\App\Supplies\Windows\ComponentsTypeWindow.xaml;;
-FC:\Users\shume\Desktop\Диплом\App\Supplies\Windows\WorkerWindow.xaml;;
 
