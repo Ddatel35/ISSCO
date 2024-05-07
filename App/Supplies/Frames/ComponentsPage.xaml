@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" TextWrapping="Wrap" Text="Комплектующие" VerticalAlignment="Center" Height="18"/>
-        <Button Content="Типы комплектующих" Click="GoToComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Center" Width="165"/>
+        <Button Content="Типы комплектующих" Click="GoToComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,0,320,0" VerticalAlignment="Center" Width="165"/>
         
         <DataGrid x:Name="DGrid" Grid.Row="1" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
@@ -27,6 +27,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-
+        <Button x:Name="DelBtn" Grid.Row="0" Content="Удалить" Click="Del_Components" Width="75" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="EditBtn" Grid.Row="0" Content="Редактировать" Click="Edit_Components" Width="120" Margin="0,0,95,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="AddBtn" Grid.Row="0" Content="Добавить" Click="Add_Components" Width="85" Margin="0,0,225,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
     </Grid>
 </Page>

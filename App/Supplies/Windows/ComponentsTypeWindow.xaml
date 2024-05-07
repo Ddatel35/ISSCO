@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Типы комплектующих" Height="500" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,15,0,0" TextWrapping="Wrap" Text="Типы комплектующих" VerticalAlignment="Top" Height="18"/>
-        <Button Content="Добавить" Click="AddNewComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,15,20,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Удалить" Click="DelComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,15,115,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,15,0,0" TextWrapping="Wrap" Text="Типы комплектующих" VerticalAlignment="Top" Height="18"/>
+        <Button Content="Добавить" Click="AddNewComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,15,10,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Удалить" Click="DelComponentsType" HorizontalAlignment="Right" Grid.Row="0" Margin="0,15,95,0" VerticalAlignment="Top" Width="75"/>
         
         <DataGrid x:Name="DGrid" Margin="5,50,5,5" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>

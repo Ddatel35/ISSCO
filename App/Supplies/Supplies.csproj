@@ -137,6 +137,9 @@
     <Compile Include="Windows\AddNewComponentsTypeWindow.xaml.cs">
       <DependentUpon>AddNewComponentsTypeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddNewComponentWindow.xaml.cs">
+      <DependentUpon>AddNewComponentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddNewSupplieWindow.xaml.cs">
       <DependentUpon>AddNewSupplieWindow.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddNewComponentsTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddNewComponentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

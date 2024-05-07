@@ -38,5 +38,56 @@ namespace Supplies.Frames
             ComponentsTypeWindow CTW = new ComponentsTypeWindow();
             CTW.Show();
         }
+
+        private void Add_Components(object sender, RoutedEventArgs e)
+        {
+            AddNewComponentWindow ANCW = new AddNewComponentWindow(null);
+            ANCW.ShowDialog();
+            UpdateTable();
+        }
+
+        private void Edit_Components(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                AddNewComponentWindow ANCW = new AddNewComponentWindow(DGrid.SelectedItem as Components);
+                ANCW.ShowDialog();
+            }
+            else
+                MessageBox.Show("Выберите редактируемого клиенита!");
+
+            UpdateTable();
+        }
+
+        private void Del_Components(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                var Removing = DGrid.SelectedItems.Cast<Components>().ToList();
+
+                if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        foreach (var rem in Removing)
+                        {
+                            SuppliesDBEntities.GetContext().Components.Remove(rem);
+                        }
+                        SuppliesDBEntities.GetContext().SaveChanges();
+                        MessageBox.Show("Данные удаленны");
+                        UpdateTable();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите удаляемоого руководителя!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
