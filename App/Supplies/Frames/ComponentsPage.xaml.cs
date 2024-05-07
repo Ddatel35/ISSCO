@@ -54,7 +54,7 @@ namespace Supplies.Frames
                 ANCW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите редактируемого клиенита!");
+                MessageBox.Show("Выберите редактируемый компонент!");
 
             UpdateTable();
         }
@@ -86,7 +86,7 @@ namespace Supplies.Frames
             }
             else
             {
-                MessageBox.Show("Выберите удаляемоого руководителя!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите редактируемый компонент!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

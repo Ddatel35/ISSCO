@@ -58,6 +58,16 @@ namespace Supplies.Frames
             {
                 var Removing = DGrid.SelectedItems.Cast<Clients>().ToList();
 
+                foreach (var check in Removing)
+                {
+                    if (SuppliesDBEntities.GetContext().Orders.FirstOrDefault(n => n.client_ID == check.ID) != null)
+                    {
+                        MessageBox.Show($"В заказах указывается клиент с именнем {check.fullName}, для удаление очистите записи данного клиента!", 
+                                        "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
+
                 if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {

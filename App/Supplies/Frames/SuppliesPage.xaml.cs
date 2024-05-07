@@ -48,7 +48,7 @@ namespace Supplies.Frames
                 ANSW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите редактируемого клиенита!");
+                MessageBox.Show("Выберите удаляемого поставщика!");
 
             UpdateTable();
         }
@@ -58,6 +58,16 @@ namespace Supplies.Frames
             if (DGrid.SelectedItem != null)
             {
                 var Removing = DGrid.SelectedItems.Cast<SuppliesT>().ToList();
+
+                foreach (var check in Removing)
+                {
+                    if (SuppliesDBEntities.GetContext().Components.FirstOrDefault(n => n.supplies_ID == check.ID) != null)
+                    {
+                        MessageBox.Show($"Товары существуют в базе данных от {check.name}, для удаления данных очистите эти товары!", 
+                                        "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
 
                 if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -80,7 +90,7 @@ namespace Supplies.Frames
             }
             else
             {
-                MessageBox.Show("Выберите удаляемоого руководителя!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите удаляемого поставщика!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }
