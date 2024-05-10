@@ -20,6 +20,10 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
         <local:IntToStringConv x:Key="IntToStringConv"/>
     </Application.Resources>
 </Application>

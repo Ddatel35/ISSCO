@@ -25,6 +25,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-
+        <Button x:Name="DelBtn" Grid.Row="0" Content="Удалить" Click="Del_Order" Width="75" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="EditBtn" Grid.Row="0" Content="Редактировать" Click="Edit_Order" Width="120" Margin="0,0,95,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="AddBtn" Grid.Row="0" Content="Добавить" Click="Add_Order" Width="85" Margin="0,0,225,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
     </Grid>
 </Page>

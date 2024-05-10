@@ -19,11 +19,8 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\WorkerWindow.
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\WorkerWindow.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\OrdersPage.g.cs
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\OrdersPage.baml
-C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.dll
-C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.xml
 C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies_Content.g.cs
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies.csproj.CopyComplete
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -43,3 +40,7 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewSupplie
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewSupplieWindow.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewComponentWindow.g.cs
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewComponentWindow.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewOrderWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewOrderWindow.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies.csproj.Fody.CopyLocal.cache

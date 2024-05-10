@@ -1,0 +1,26 @@
+﻿<Window x:Class="Supplies.Windows.AddNewOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supplies.Windows"
+        mc:Ignorable="d"
+        Title="Создание заказа" Height="450" Width="800">
+    <Grid>
+        <ComboBox x:Name="fullNCB" SelectedItem="{Binding Clients}" DisplayMemberPath="fullName" HorizontalAlignment="Left" Margin="120,53,0,0" VerticalAlignment="Top" Width="257"/>
+
+        <ComboBox x:Name="compTypeCB" SelectedItem="{Binding Components_type}" DisplayMemberPath="name" SelectionChanged="Item_Changed" HorizontalAlignment="Left" Margin="34,181,0,0" VerticalAlignment="Top" Width="257"/>
+
+        <ComboBox x:Name="compCB" SelectedItem="{Binding Components_type}" DisplayMemberPath="name" SelectionChanged="Selected_Item" HorizontalAlignment="Left" Margin="379,181,0,0" VerticalAlignment="Top" Width="257"/>
+
+        <DataGrid x:Name="DGrid" Margin="5,228,5,0" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Components_type.name}" Header="Тип" Width="*"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Supplies.name}" Header="Поставщик" Width="*"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Ценна" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
