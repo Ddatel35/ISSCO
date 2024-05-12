@@ -19,14 +19,14 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Clients.fullName}" Header="ФИО клиента" Width="*"/>
                 <DataGridTextColumn Binding="{Binding createDate, StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" Header="Дата создания" Width="*"/>
-                <DataGridTextColumn Binding="{Binding deliveryDate}" Header="Дата доставки" Width="*"/>
+                <DataGridTextColumn Binding="{Binding deliveryDate, StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" Header="Дата доставки" Width="*"/>
                 <DataGridTextColumn Binding="{Binding fullPrice}" Header="Сумма заказа" Width="*"/>
                 <DataGridTextColumn Binding="{Binding orderStatus, Converter={StaticResource IntToStringConv}}" Header="Статус" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <Button x:Name="DelBtn" Grid.Row="0" Content="Удалить" Click="Del_Order" Width="75" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <Button x:Name="EditBtn" Grid.Row="0" Content="Редактировать" Click="Edit_Order" Width="120" Margin="0,0,95,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="EditBtn" Grid.Row="0" Content="Подробнее" Click="Edit_Order" Width="120" Margin="0,0,95,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <Button x:Name="AddBtn" Grid.Row="0" Content="Добавить" Click="Add_Order" Width="85" Margin="0,0,225,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
     </Grid>
 </Page>

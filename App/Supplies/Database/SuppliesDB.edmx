@@ -31,16 +31,14 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "SuppliesDB.dbo.Ordered_components" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Ordered_components">
           <Key>
-            <PropertyRef Name="orders_ID" />
-            <PropertyRef Name="components_ID" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="orders_ID" Type="int" Nullable="false" />
           <Property Name="components_ID" Type="int" Nullable="false" />
-          <Property Name="checkCode" Type="bigint" />
+          <Property Name="checkCode" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -48,7 +46,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="client_ID" Type="int" Nullable="false" />
-          <Property Name="createDate" Type="date" />
+          <Property Name="createDate" Type="datetime" />
           <Property Name="deliveryDate" Type="date" />
           <Property Name="fullPrice" Type="int" Nullable="false" />
           <Property Name="orderStatus" Type="int" Nullable="false" />
@@ -155,17 +153,11 @@
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Components_type" EntityType="Self.Components_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplies" EntityType="Self.Supplies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Ordered_components].[orders_ID] AS [orders_ID], 
-    [Ordered_components].[components_ID] AS [components_ID], 
-    [Ordered_components].[checkCode] AS [checkCode]
-    FROM [dbo].[Ordered_components] AS [Ordered_components]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Components_Components_type" Association="Self.FK_Components_Components_type">
             <End Role="Components_type" EntitySet="Components_type" />
             <End Role="Components" EntitySet="Components" />
@@ -227,13 +219,24 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Components" Relationship="Self.FK_Components_Components_type" FromRole="Components_type" ToRole="Components" />
         </EntityType>
+        <EntityType Name="Ordered_components">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="orders_ID" Type="Int32" Nullable="false" />
+          <Property Name="components_ID" Type="Int32" Nullable="false" />
+          <Property Name="checkCode" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Components" Relationship="Self.FK_Ordered_components_Components" FromRole="Ordered_components" ToRole="Components" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Ordered_components_Orders" FromRole="Ordered_components" ToRole="Orders" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="client_ID" Type="Int32" Nullable="false" />
-          <Property Name="createDate" Type="DateTime" Precision="0" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="deliveryDate" Type="DateTime" Precision="0" />
           <Property Name="fullPrice" Type="Int32" Nullable="false" />
           <Property Name="orderStatus" Type="Int32" Nullable="false" />
@@ -268,17 +271,6 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="role_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-        </EntityType>
-        <EntityType Name="Ordered_components">
-          <Key>
-            <PropertyRef Name="orders_ID" />
-            <PropertyRef Name="components_ID" />
-          </Key>
-          <Property Name="orders_ID" Type="Int32" Nullable="false" />
-          <Property Name="components_ID" Type="Int32" Nullable="false" />
-          <Property Name="checkCode" Type="Int64" />
-          <NavigationProperty Name="Components" Relationship="Self.FK_Ordered_components_Components" FromRole="Ordered_components" ToRole="Components" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Ordered_components_Orders" FromRole="Ordered_components" ToRole="Orders" />
         </EntityType>
         <Association Name="FK_Orders_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
@@ -356,11 +348,11 @@
           <EntitySet Name="Clients" EntityType="Self.Clients" />
           <EntitySet Name="Components" EntityType="Self.Components" />
           <EntitySet Name="Components_type" EntityType="Self.Components_type" />
+          <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Supplies" EntityType="SuppliesDBModel.SuppliesT" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" />
           <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Orders" EntitySet="Orders" />
@@ -421,6 +413,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Ordered_components">
+            <EntityTypeMapping TypeName="SuppliesDBModel.Ordered_components">
+              <MappingFragment StoreEntitySet="Ordered_components">
+                <ScalarProperty Name="orders_ID" ColumnName="orders_ID" />
+                <ScalarProperty Name="components_ID" ColumnName="components_ID" />
+                <ScalarProperty Name="checkCode" ColumnName="checkCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="SuppliesDBModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
@@ -459,15 +461,6 @@
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role_ID" ColumnName="role_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Ordered_components">
-            <EntityTypeMapping TypeName="SuppliesDBModel.Ordered_components">
-              <MappingFragment StoreEntitySet="Ordered_components">
-                <ScalarProperty Name="orders_ID" ColumnName="orders_ID" />
-                <ScalarProperty Name="components_ID" ColumnName="components_ID" />
-                <ScalarProperty Name="checkCode" ColumnName="checkCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

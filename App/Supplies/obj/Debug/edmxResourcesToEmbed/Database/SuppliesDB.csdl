@@ -31,13 +31,24 @@
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Components" Relationship="Self.FK_Components_Components_type" FromRole="Components_type" ToRole="Components" />
   </EntityType>
+  <EntityType Name="Ordered_components">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="orders_ID" Type="Int32" Nullable="false" />
+    <Property Name="components_ID" Type="Int32" Nullable="false" />
+    <Property Name="checkCode" Type="Int64" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Components" Relationship="Self.FK_Ordered_components_Components" FromRole="Ordered_components" ToRole="Components" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Ordered_components_Orders" FromRole="Ordered_components" ToRole="Orders" />
+  </EntityType>
   <EntityType Name="Orders">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="client_ID" Type="Int32" Nullable="false" />
-    <Property Name="createDate" Type="DateTime" Precision="0" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
     <Property Name="deliveryDate" Type="DateTime" Precision="0" />
     <Property Name="fullPrice" Type="Int32" Nullable="false" />
     <Property Name="orderStatus" Type="Int32" Nullable="false" />
@@ -72,17 +83,6 @@
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="role_ID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-  </EntityType>
-  <EntityType Name="Ordered_components">
-    <Key>
-      <PropertyRef Name="orders_ID" />
-      <PropertyRef Name="components_ID" />
-    </Key>
-    <Property Name="orders_ID" Type="Int32" Nullable="false" />
-    <Property Name="components_ID" Type="Int32" Nullable="false" />
-    <Property Name="checkCode" Type="Int64" />
-    <NavigationProperty Name="Components" Relationship="Self.FK_Ordered_components_Components" FromRole="Ordered_components" ToRole="Components" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Ordered_components_Orders" FromRole="Ordered_components" ToRole="Orders" />
   </EntityType>
   <Association Name="FK_Orders_Clients">
     <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
@@ -160,11 +160,11 @@
     <EntitySet Name="Clients" EntityType="Self.Clients" />
     <EntitySet Name="Components" EntityType="Self.Components" />
     <EntitySet Name="Components_type" EntityType="Self.Components_type" />
+    <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" />
     <EntitySet Name="Orders" EntityType="Self.Orders" />
     <EntitySet Name="Roles" EntityType="Self.Roles" />
     <EntitySet Name="Supplies" EntityType="SuppliesDBModel.SuppliesT" />
     <EntitySet Name="Users" EntityType="Self.Users" />
-    <EntitySet Name="Ordered_components" EntityType="Self.Ordered_components" />
     <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
       <End Role="Clients" EntitySet="Clients" />
       <End Role="Orders" EntitySet="Orders" />

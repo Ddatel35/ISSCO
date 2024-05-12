@@ -61,16 +61,28 @@ namespace Supplies.Frames
         {
             if (DGrid.SelectedItem != null)
             {
-                var Removing = DGrid.SelectedItems.Cast<SuppliesT>().ToList();
+                var Removing = DGrid.SelectedItems.Cast<Orders>().ToList();
 
                 if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     try
                     {
+
                         foreach (var rem in Removing)
                         {
-                            SuppliesDBEntities.GetContext().Supplies.Remove(rem);
+                            string checkCode = Convert.ToInt64(rem.ID) + rem.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+
+                            long checkCodeL = Convert.ToInt64(checkCode);
+
+                            var ordered = SuppliesDBEntities.GetContext().Ordered_components.Where(x => x.checkCode == checkCodeL);
+
+                            foreach (var order in ordered)
+                            {
+                                SuppliesDBEntities.GetContext().Ordered_components.Remove(order);
+                            }
+
+                            SuppliesDBEntities.GetContext().Orders.Remove(rem);
                         }
                         SuppliesDBEntities.GetContext().SaveChanges();
                         MessageBox.Show("Данные удаленны");

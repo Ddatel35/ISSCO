@@ -23,6 +23,7 @@ namespace Supplies.Database
                 _context = new SuppliesDBEntities();
             return _context;
         }
+
         public SuppliesDBEntities()
             : base("name=SuppliesDBEntities")
         {
@@ -36,10 +37,10 @@ namespace Supplies.Database
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Components> Components { get; set; }
         public virtual DbSet<Components_type> Components_type { get; set; }
+        public virtual DbSet<Ordered_components> Ordered_components { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<SuppliesT> Supplies { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Ordered_components> Ordered_components { get; set; }
     }
 }

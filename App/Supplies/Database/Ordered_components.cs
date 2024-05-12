@@ -16,7 +16,8 @@ namespace Supplies.Database
     {
         public int orders_ID { get; set; }
         public int components_ID { get; set; }
-        public Nullable<long> checkCode { get; set; }
+        public long checkCode { get; set; }
+        public int ID { get; set; }
     
         public virtual Components Components { get; set; }
         public virtual Orders Orders { get; set; }

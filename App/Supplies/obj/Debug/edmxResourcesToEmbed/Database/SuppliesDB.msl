@@ -30,6 +30,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Ordered_components">
+      <EntityTypeMapping TypeName="SuppliesDBModel.Ordered_components">
+        <MappingFragment StoreEntitySet="Ordered_components">
+          <ScalarProperty Name="orders_ID" ColumnName="orders_ID" />
+          <ScalarProperty Name="components_ID" ColumnName="components_ID" />
+          <ScalarProperty Name="checkCode" ColumnName="checkCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="SuppliesDBModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
@@ -68,15 +78,6 @@
           <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="role_ID" ColumnName="role_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ordered_components">
-      <EntityTypeMapping TypeName="SuppliesDBModel.Ordered_components">
-        <MappingFragment StoreEntitySet="Ordered_components">
-          <ScalarProperty Name="orders_ID" ColumnName="orders_ID" />
-          <ScalarProperty Name="components_ID" ColumnName="components_ID" />
-          <ScalarProperty Name="checkCode" ColumnName="checkCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

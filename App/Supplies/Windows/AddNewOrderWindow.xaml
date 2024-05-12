@@ -5,22 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Supplies.Windows"
         mc:Ignorable="d"
-        Title="Создание заказа" Height="450" Width="800">
+        Title="Создание заказа" Height="510" Width="800" ResizeMode="CanMinimize">
     <Grid>
-        <ComboBox x:Name="fullNCB" SelectedItem="{Binding Clients}" DisplayMemberPath="fullName" HorizontalAlignment="Left" Margin="120,53,0,0" VerticalAlignment="Top" Width="257"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="284"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Добавление заказа" VerticalAlignment="Center"/>
 
-        <ComboBox x:Name="compTypeCB" SelectedItem="{Binding Components_type}" DisplayMemberPath="name" SelectionChanged="Item_Changed" HorizontalAlignment="Left" Margin="34,181,0,0" VerticalAlignment="Top" Width="257"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="ФИО клиента" VerticalAlignment="Top" Grid.Row="1" Margin="0,16,0,0"/>
+        <ComboBox x:Name="fullNCB" SelectedItem="{Binding Clients}" DisplayMemberPath="fullName" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Width="256" Grid.Row="1"/>
 
-        <ComboBox x:Name="compCB" SelectedItem="{Binding Components_type}" DisplayMemberPath="name" SelectionChanged="Selected_Item" HorizontalAlignment="Left" Margin="379,181,0,0" VerticalAlignment="Top" Width="257"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Тип комплектующего" VerticalAlignment="Top" Grid.Row="2" Margin="77,8,0,0"/>
+        <ComboBox x:Name="compTypeCB" DisplayMemberPath="name" SelectionChanged="Item_Changed" HorizontalAlignment="Left" Margin="50,39,0,0" VerticalAlignment="Top" Width="200" Grid.Row="2"/>
 
-        <DataGrid x:Name="DGrid" Margin="5,228,5,0" AutoGenerateColumns="False" IsReadOnly="True">
+        <TextBlock TextWrapping="Wrap" Text="Название комплектующего" VerticalAlignment="Top" Grid.Row="2" Margin="0,8,55,0" HorizontalAlignment="Right" Width="190"/>
+        <ComboBox x:Name="compCB" DisplayMemberPath="name" SelectionChanged="Selected_Item" Margin="0,39,50,0" VerticalAlignment="Top" Grid.Row="2" HorizontalAlignment="Right" Width="200"/>
+
+        <TextBlock TextWrapping="Wrap" Text="Содержание заказа" VerticalAlignment="Top" Grid.Row="2" Margin="0,72,0,0" HorizontalAlignment="Center" Width="141"/>
+        <DataGrid x:Name="DGrid" Margin="5,94,5,10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Components_type.name}" Header="Тип" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Components_type.name}" Header="Тип" Width="150"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Supplies.name}" Header="Поставщик" Width="*"/>
-                <DataGridTextColumn Binding="{Binding price}" Header="Ценна" Width="*"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Ценна" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock TextWrapping="Wrap" Text="Итого:" VerticalAlignment="Top" Grid.Row="3" Margin="0,6,113,0" HorizontalAlignment="Right" Width="46"/>
+        <TextBlock x:Name="fullPriceTB" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="3" Margin="0,6,50,0" HorizontalAlignment="Right"/>
 
+        <Button x:Name="AddBtn" Content="Добавить" Click="Add_Order" Width="80" Margin="0,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="3"/>
     </Grid>
 </Window>
