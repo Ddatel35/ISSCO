@@ -1,0 +1,25 @@
+﻿<Window x:Class="Supplies.Windows.OrderDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Supplies.Windows"
+        mc:Ignorable="d"
+        Title="О заказе" Height="300" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Содержание заказа" VerticalAlignment="Center"/>
+
+        <DataGrid x:Name="DGrid" Margin="5,5,5,5" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Components_type.name}" Header="Тип" Width="150"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="*"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Ценна" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

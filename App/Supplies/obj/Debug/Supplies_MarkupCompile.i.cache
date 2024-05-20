@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\shume\Desktop\Диплом\App\Supplies\App.xaml
-12-1155437480
+141038482278
 21664869119
-291835302119
+311847876105
 1291412692595
-Frames\ClientsPage.xaml;Frames\ComponentsPage.xaml;Frames\OrdersPage.xaml;Frames\SuppliesPage.xaml;Windows\AddNewClientWindow.xaml;Windows\AddNewComponentsTypeWindow.xaml;Windows\AddNewComponentWindow.xaml;Windows\AddNewOrderWindow.xaml;Windows\AddNewSupplieWindow.xaml;Windows\Authorization.xaml;Windows\ComponentsTypeWindow.xaml;Windows\WorkerWindow.xaml;
+Frames\ClientsPage.xaml;Frames\ComponentsPage.xaml;Frames\OrdersPage.xaml;Frames\SuppliesPage.xaml;Windows\AddNewClientWindow.xaml;Windows\AddNewComponentsTypeWindow.xaml;Windows\AddNewComponentWindow.xaml;Windows\AddNewOrderWindow.xaml;Windows\AddNewSupplieWindow.xaml;Windows\Authorization.xaml;Windows\ComponentsTypeWindow.xaml;Windows\OrderDetailsWindow.xaml;Windows\SupplesOrderInfoWindow.xaml;Windows\WorkerWindow.xaml;
 
-False
+True
 

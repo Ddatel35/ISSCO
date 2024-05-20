@@ -285,6 +285,12 @@
     <Compile Include="Windows\ComponentsTypeWindow.xaml.cs">
       <DependentUpon>ComponentsTypeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\OrderDetailsWindow.xaml.cs">
+      <DependentUpon>OrderDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SupplesOrderInfoWindow.xaml.cs">
+      <DependentUpon>SupplesOrderInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WorkerWindow.xaml.cs">
       <DependentUpon>WorkerWindow.xaml</DependentUpon>
     </Compile>
@@ -337,6 +343,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\ComponentsTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OrderDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SupplesOrderInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

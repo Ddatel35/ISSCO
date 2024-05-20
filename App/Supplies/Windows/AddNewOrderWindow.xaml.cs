@@ -47,7 +47,7 @@ namespace Supplies.Windows
         {
             var tt = SuppliesDBEntities.GetContext().Components.ToList();
 
-            if (compTypeCB.SelectedIndex > 0)
+            if (compTypeCB.SelectedIndex > -1)
             {
                 tt = tt.Where(t => t.type_ID == (compTypeCB.SelectedItem as Components_type).ID).ToList();
             }

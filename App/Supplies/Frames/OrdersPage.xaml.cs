@@ -44,17 +44,17 @@ namespace Supplies.Frames
             UpdateTable();
         }
 
-        private void Edit_Order(object sender, RoutedEventArgs e)
+        private void About_Order(object sender, RoutedEventArgs e)
         {
             if (DGrid.SelectedItem != null)
             {
-                AddNewOrderWindow ANOW = new AddNewOrderWindow(DGrid.SelectedItem as Orders);
-                ANOW.ShowDialog();
+                Orders order = DGrid.SelectedItem as Orders;
+                string checkCode = Convert.ToInt64(order.ID) + order.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+                OrderDetailsWindow ODW = new OrderDetailsWindow(checkCode);
+                ODW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите заказ который хотите изменить!");
-
-            UpdateTable();
+                MessageBox.Show("Выберите заказ, информацию о котором хотите посмотреть!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void Del_Order(object sender, RoutedEventArgs e)
@@ -85,7 +85,7 @@ namespace Supplies.Frames
                             SuppliesDBEntities.GetContext().Orders.Remove(rem);
                         }
                         SuppliesDBEntities.GetContext().SaveChanges();
-                        MessageBox.Show("Данные удаленны");
+                        MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
                     catch (Exception ex)
@@ -98,6 +98,49 @@ namespace Supplies.Frames
             {
                 MessageBox.Show("Выберите удаляемый заказ!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void Supplies_Info_Order(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                Orders order = DGrid.SelectedItem as Orders;
+                string checkCode = Convert.ToInt64(order.ID) + order.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+                SupplesOrderInfoWindow SOIW = new SupplesOrderInfoWindow(checkCode, order.ID);
+                SOIW.ShowDialog();
+            }
+            else
+                MessageBox.Show("Выберите заказ, информацию о котором хотите посмотреть!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            UpdateTable();
+        }
+
+        private void Change_Order_Status(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                Orders order = DGrid.SelectedItem as Orders;
+                if (order.orderStatus == 0)
+                {
+                    MessageBox.Show("Статус заказа можно сменить только у заказов которые в пути!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                order.orderStatus = 2;
+                try
+                {
+                    SuppliesDBEntities.GetContext().SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
+                MessageBox.Show("Статус заказа сменён", "Успех", MessageBoxButton.OK);
+            }
+            else
+                MessageBox.Show("Выберите заказ, статус которого хотите сменить!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            UpdateTable();
         }
     }
 }

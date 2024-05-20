@@ -44,3 +44,7 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewOrderWi
 C:\Users\shume\Desktop\Диплом\App\Supplies\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewOrderWindow.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies.csproj.Fody.CopyLocal.cache
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\OrderDetailsWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\OrderDetailsWindow.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\SupplesOrderInfoWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\SupplesOrderInfoWindow.baml
