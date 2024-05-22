@@ -65,6 +65,16 @@ namespace Supplies.Frames
             {
                 var Removing = DGrid.SelectedItems.Cast<Components>().ToList();
 
+                foreach (var check in Removing)
+                {
+                    if (SuppliesDBEntities.GetContext().Components.FirstOrDefault(n => n.type_ID == check.ID) != null)
+                    {
+                        MessageBox.Show($"Товар {check.name} используется, для удаление очистите записи данного товара!",
+                                        "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
+
                 if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -86,7 +96,7 @@ namespace Supplies.Frames
             }
             else
             {
-                MessageBox.Show("Выберите редактируемый компонент!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите удаляемый компонент!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

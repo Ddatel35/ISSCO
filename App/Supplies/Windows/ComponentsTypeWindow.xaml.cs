@@ -44,6 +44,16 @@ namespace Supplies.Windows
             {
                 var Removing = DGrid.SelectedItems.Cast<Components_type>().ToList();
 
+                foreach (var check in Removing)
+                {
+                    if (SuppliesDBEntities.GetContext().Components.FirstOrDefault(n => n.type_ID == check.ID) != null)
+                    {
+                        MessageBox.Show($"Тип товара {check.name} используется, для удаление очистите записи данного типа товара!",
+                                        "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
+
                 if (MessageBox.Show($"Вы точно хотите удалить следующие {Removing.Count()} элеметнов?", "Внимание",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {

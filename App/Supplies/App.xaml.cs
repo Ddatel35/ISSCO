@@ -28,7 +28,9 @@ namespace Supplies
                 if (intValue == 1)
                     return "В пути";
                 if (intValue == 2)
-                    return "Доставлен";
+                    return "Доставка до клиента";
+                if (intValue == 2)
+                    return "У клиента";
             }
 
             return value.ToString();

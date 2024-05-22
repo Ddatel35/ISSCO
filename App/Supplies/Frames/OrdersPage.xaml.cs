@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Word = Microsoft.Office.Interop.Word;
 
 
 namespace Supplies.Frames
@@ -27,6 +28,18 @@ namespace Supplies.Frames
         public OrdersPage()
         {
             InitializeComponent();
+
+            if (MainWindow.Globals.Access == 2)
+            {
+                AddBtn.Visibility = Visibility.Hidden;
+                AboBtn.Visibility = Visibility.Hidden;
+                DelBtn.Visibility = Visibility.Hidden;
+
+                OrdBtn.Visibility = Visibility.Visible;
+                InvBtn.Visibility = Visibility.Visible;
+                DelivBtn.Visibility = Visibility.Visible;
+            }
+
             IntToStringConv converter = new IntToStringConv();
             Resources.Add("IntToStringConv", converter);
             UpdateTable();
@@ -141,6 +154,79 @@ namespace Supplies.Frames
                 MessageBox.Show("Выберите заказ, статус которого хотите сменить!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
+        }
+
+        private void Test_Method(object sender, RoutedEventArgs e)
+        {
+            List<Components> selectedComponents = new List<Components>();
+            Orders order = DGrid.SelectedItem as Orders;
+
+            string[] textsToFind = { "~ID_Order~", "~FullName_Customer~", "~Delivery_Date~", "~Full_Price~" };
+            string[] replacements = { order.ID.ToString(), order.Clients.fullName, order.deliveryDate.ToString().Remove(9), order.fullPrice.ToString() };
+            string[] columsName = { "Тип", "Название", "ценна" };
+
+            string checkCode = Convert.ToInt64(order.ID) + order.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+            long checkCodeL = Convert.ToInt64(checkCode);
+
+            var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
+
+            foreach (var component in components)
+            {
+                selectedComponents.Add(SuppliesDBEntities.GetContext().Components.FirstOrDefault(i => i.ID == component.components_ID));
+            }
+
+            var app = new Word.Application();
+            app.Visible = false;
+
+            Word.Document doc = app.Documents.Open(@"C:\Users\shume\Desktop\Диплом\App\Supplies\Resourses\Document.docx");
+            Word.Document newDoc = app.Documents.Add();
+            newDoc.Content.FormattedText = doc.Content.FormattedText;
+
+            for (int i = 0; i < textsToFind.Length; i++)
+            {
+                Word.Find find = app.Selection.Find;
+                find.Text = textsToFind[i];
+                find.Replacement.Text = replacements[i];
+                find.Execute(Replace: Word.WdReplace.wdReplaceAll);
+            }
+
+            Word.Find findT = app.Selection.Find;
+            findT.Text = "~Order_Table~";
+            findT.Execute();
+
+            app.Selection.ClearFormatting();
+
+            if (findT.Found)
+            {
+                Word.Range range = app.Selection.Range;
+                Word.Table newTable = newDoc.Tables.Add(range, selectedComponents.Count + 1, 3);
+                newTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внутренних границ
+                newTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внешних границ
+
+                // Заполнение заголовков таблицы
+                for (int i = 0; i < columsName.Count(); i++)
+                {
+                    newTable.Cell(1, i + 1).Range.Text = columsName[i];
+                }
+
+                for (int row = 2; row <= selectedComponents.Count + 1; row++)
+                {
+                    newTable.Cell(row, 1).Range.Text = selectedComponents[row - 2].Components_type.name; // Заполнение столбца "Тип"
+                    newTable.Cell(row, 2).Range.Text = selectedComponents[row - 2].name; // Заполнение столбца "Название"
+                    newTable.Cell(row, 3).Range.Text = selectedComponents[row - 2].price.ToString(); // Заполнение столбца "ценна"
+                }
+            }
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            newDoc.SaveAs(path + $@"\{order.Clients.fullName}.docx");
+
+            newDoc.Close();
+            doc.Close();
+
+            app.Quit();
+
+            MessageBox.Show("Накладная созданна на рабочем столе", "Успех", MessageBoxButton.OK);
         }
     }
 }

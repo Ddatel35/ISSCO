@@ -19,7 +19,9 @@
             <MenuItem Header="Компоненты" Click="GoTo_Components"/>
             <MenuItem Header="Поставщики" Click="GoTo_Supplies"/>
         </Menu>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+        <Button Content="Выход" Click="GoTo_Auth" Margin="0,0,20,0" Width="70" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
 
     </Grid>
 </Window>

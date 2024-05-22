@@ -22,6 +22,11 @@ namespace Supplies
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static class Globals
+        {
+            public static int Access;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +37,7 @@ namespace Supplies
             var auth = SuppliesDBEntities.GetContext().Users.AsNoTracking().FirstOrDefault(a => a.login == loginTxb.Text && a.password == passBox.Password);
             if (auth != null)
             {
+                Globals.Access = auth.role_ID;
                 MessageBox.Show("Добро пожаловать!", "Приветствие", MessageBoxButton.OK);
                 WorkerWindow WW = new WorkerWindow();
                 WW.Show();
