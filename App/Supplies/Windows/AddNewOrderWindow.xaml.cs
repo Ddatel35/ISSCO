@@ -26,7 +26,7 @@ namespace Supplies.Windows
         Ordered_components _orderedComponents = new Ordered_components();
         List<Components> selectedComponents = new List<Components>();
 
-        int fullPrice;
+        int fullPrice = 1500;
         public AddNewOrderWindow(Orders selectedOrder)
         {
             InitializeComponent();
@@ -56,11 +56,14 @@ namespace Supplies.Windows
 
         private void Selected_Item(object sender, SelectionChangedEventArgs e)
         {
-            selectedComponents.Add(compCB.SelectedValue as Components);
+            if (compCB.SelectedValue as Components != null)
+            {
+                selectedComponents.Add(compCB.SelectedValue as Components);
 
-            fullPrice = fullPrice + (compCB.SelectedValue as Components).price;
+                fullPrice = fullPrice + (compCB.SelectedValue as Components).price;
 
-            Update_Table();
+                Update_Table();
+            }
         }
 
         private void Update_Table()
@@ -102,7 +105,7 @@ namespace Supplies.Windows
                 }
             }
 
-            string code = Convert.ToString(_currentOrder.ID) + DateTime.Now.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+            string code = Convert.ToString(_currentOrder.ID) + DateTime.Now.ToString("ddMMyyyyHHmm");
             int order_ID = _currentOrder.ID;
 
             for (int i = 0; i < selectedComponents.Count; i++)
@@ -115,6 +118,8 @@ namespace Supplies.Windows
                 try
                 {
                     SuppliesDBEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Заказ сохранён", "Успех", MessageBoxButton.OK);
+                    Close();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -128,8 +133,6 @@ namespace Supplies.Windows
                     }
                 }
             }
-
-            MessageBox.Show("Заказ сохранён", "Успех", MessageBoxButton.OK);
         }
     }
 }

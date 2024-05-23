@@ -16,7 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Word = Microsoft.Office.Interop.Word;
-
+using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
+using System.Data.Entity.Validation;
 
 namespace Supplies.Frames
 {
@@ -62,7 +64,9 @@ namespace Supplies.Frames
             if (DGrid.SelectedItem != null)
             {
                 Orders order = DGrid.SelectedItem as Orders;
-                string checkCode = Convert.ToInt64(order.ID) + order.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+                DateTime date = DateTime.ParseExact(order.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                string formattedDate = date.ToString("ddMMyyyyHHmm");
+                string checkCode = Convert.ToInt64(order.ID) + formattedDate;
                 OrderDetailsWindow ODW = new OrderDetailsWindow(checkCode);
                 ODW.ShowDialog();
             }
@@ -84,7 +88,10 @@ namespace Supplies.Frames
 
                         foreach (var rem in Removing)
                         {
-                            string checkCode = Convert.ToInt64(rem.ID) + rem.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+                            DateTime date = DateTime.ParseExact(rem.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                            string formattedDate = date.ToString("ddMMyyyyHHmm");
+
+                            string checkCode = Convert.ToInt64(rem.ID) + formattedDate;
 
                             long checkCodeL = Convert.ToInt64(checkCode);
 
@@ -101,10 +108,21 @@ namespace Supplies.Frames
                         MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
-                    catch (Exception ex)
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                        {
+                            MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
+                            foreach (DbValidationError err in validationError.ValidationErrors)
+                            {
+                                MessageBox.Show(err.ErrorMessage + "");
+                            }
+                        }
+                    }
+                    /*catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message.ToString());
-                    }
+                    }*/
                 }
             }
             else
@@ -118,12 +136,22 @@ namespace Supplies.Frames
             if (DGrid.SelectedItem != null)
             {
                 Orders order = DGrid.SelectedItem as Orders;
-                string checkCode = Convert.ToInt64(order.ID) + order.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
+
+                if (order.orderStatus != 0)
+                {
+                    MessageBox.Show("Статус заказа можно сменить только у заказов которые не заказанны!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                DateTime date = DateTime.ParseExact(order.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                string formattedDate = date.ToString("ddMMyyyyHHmm");
+
+                string checkCode = Convert.ToInt64(order.ID) + formattedDate;
                 SupplesOrderInfoWindow SOIW = new SupplesOrderInfoWindow(checkCode, order.ID);
                 SOIW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите заказ, информацию о котором хотите посмотреть!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите заказ, котоый вы хотите заказать!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
         }
@@ -133,11 +161,13 @@ namespace Supplies.Frames
             if (DGrid.SelectedItem != null)
             {
                 Orders order = DGrid.SelectedItem as Orders;
-                if (order.orderStatus == 0)
+
+                if (order.orderStatus != 1)
                 {
                     MessageBox.Show("Статус заказа можно сменить только у заказов которые в пути!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
+
                 order.orderStatus = 2;
                 try
                 {
@@ -148,85 +178,118 @@ namespace Supplies.Frames
                     MessageBox.Show(ex.Message.ToString());
                 }
 
-                MessageBox.Show("Статус заказа сменён", "Успех", MessageBoxButton.OK);
+                try
+                {
+                    List<Components> selectedComponents = new List<Components>();
+
+                    string[] textsToFind = { "~ID_Order~", "~FullName_Customer~", "~Delivery_Date~", "~Full_Price~" };
+                    string[] replacements = { order.ID.ToString(), order.Clients.fullName, order.deliveryDate.ToString().Remove(10), order.fullPrice.ToString() };
+                    string[] columsName = { "Тип", "Название", "Цена" };
+
+                    DateTime date = DateTime.ParseExact(order.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                    string formattedDate = date.ToString("ddMMyyyyHHmm");
+
+                    string checkCode = Convert.ToInt64(order.ID) + formattedDate;
+                    long checkCodeL = Convert.ToInt64(checkCode);
+
+                    var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
+
+                    foreach (var component in components)
+                    {
+                        selectedComponents.Add(SuppliesDBEntities.GetContext().Components.FirstOrDefault(i => i.ID == component.components_ID));
+                    }
+
+                    var app = new Word.Application();
+                    app.Visible = false;
+
+                    Word.Document doc = app.Documents.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Templates\Invoice.docx");
+                    Word.Document newDoc = app.Documents.Add();
+                    newDoc.Content.FormattedText = doc.Content.FormattedText;
+
+                    for (int i = 0; i < textsToFind.Length; i++)
+                    {
+                        Word.Find find = app.Selection.Find;
+                        find.Text = textsToFind[i];
+                        find.Replacement.Text = replacements[i];
+                        find.Execute(Replace: Word.WdReplace.wdReplaceAll);
+                    }
+
+                    Word.Find findT = app.Selection.Find;
+                    findT.Text = "~Order_Table~";
+                    findT.Execute();
+
+                    app.Selection.ClearFormatting();
+
+                    if (findT.Found)
+                    {
+                        Word.Range range = app.Selection.Range;
+                        Word.Table newTable = newDoc.Tables.Add(range, selectedComponents.Count + 1, 3);
+                        newTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внутренних границ
+                        newTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внешних границ
+
+                        // Заполнение заголовков таблицы
+                        for (int i = 0; i < columsName.Count(); i++)
+                        {
+                            newTable.Cell(1, i + 1).Range.Text = columsName[i];
+                        }
+
+                        for (int row = 2; row <= selectedComponents.Count + 1; row++)
+                        {
+                            newTable.Cell(row, 1).Range.Text = selectedComponents[row - 2].Components_type.name; // Заполнение столбца "Тип"
+                            newTable.Cell(row, 2).Range.Text = selectedComponents[row - 2].name; // Заполнение столбца "Название"
+                            newTable.Cell(row, 3).Range.Text = selectedComponents[row - 2].price.ToString(); // Заполнение столбца "ценна"
+                        }
+                    }
+
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                    newDoc.SaveAs(path + $@"\{order.Clients.fullName}.docx");
+
+                    newDoc.Close();
+                    doc.Close();
+
+                    app.Quit();
+
+                    MessageBox.Show("Статус заказа сменён и созданна накладная на рабочем столе", "Успех", MessageBoxButton.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
             else
-                MessageBox.Show("Выберите заказ, статус которого хотите сменить!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите заказ, который пришёл!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
         }
 
         private void Test_Method(object sender, RoutedEventArgs e)
         {
-            List<Components> selectedComponents = new List<Components>();
-            Orders order = DGrid.SelectedItem as Orders;
-
-            string[] textsToFind = { "~ID_Order~", "~FullName_Customer~", "~Delivery_Date~", "~Full_Price~" };
-            string[] replacements = { order.ID.ToString(), order.Clients.fullName, order.deliveryDate.ToString().Remove(9), order.fullPrice.ToString() };
-            string[] columsName = { "Тип", "Название", "ценна" };
-
-            string checkCode = Convert.ToInt64(order.ID) + order.createDate.ToString().Remove(2, 1).Remove(4, 1).Remove(8, 1).Remove(10, 1).Remove(12);
-            long checkCodeL = Convert.ToInt64(checkCode);
-
-            var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
-
-            foreach (var component in components)
+            if (DGrid.SelectedItem != null)
             {
-                selectedComponents.Add(SuppliesDBEntities.GetContext().Components.FirstOrDefault(i => i.ID == component.components_ID));
-            }
-
-            var app = new Word.Application();
-            app.Visible = false;
-
-            Word.Document doc = app.Documents.Open(@"C:\Users\shume\Desktop\Диплом\App\Supplies\Resourses\Document.docx");
-            Word.Document newDoc = app.Documents.Add();
-            newDoc.Content.FormattedText = doc.Content.FormattedText;
-
-            for (int i = 0; i < textsToFind.Length; i++)
-            {
-                Word.Find find = app.Selection.Find;
-                find.Text = textsToFind[i];
-                find.Replacement.Text = replacements[i];
-                find.Execute(Replace: Word.WdReplace.wdReplaceAll);
-            }
-
-            Word.Find findT = app.Selection.Find;
-            findT.Text = "~Order_Table~";
-            findT.Execute();
-
-            app.Selection.ClearFormatting();
-
-            if (findT.Found)
-            {
-                Word.Range range = app.Selection.Range;
-                Word.Table newTable = newDoc.Tables.Add(range, selectedComponents.Count + 1, 3);
-                newTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внутренних границ
-                newTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внешних границ
-
-                // Заполнение заголовков таблицы
-                for (int i = 0; i < columsName.Count(); i++)
+                Orders order = DGrid.SelectedItem as Orders;
+                if (order.orderStatus != 2)
                 {
-                    newTable.Cell(1, i + 1).Range.Text = columsName[i];
+                    MessageBox.Show("Статус заказа можно сменить только у заказов которые в пути к клиенту!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
                 }
+                order.orderStatus = 3;
 
-                for (int row = 2; row <= selectedComponents.Count + 1; row++)
+                try
                 {
-                    newTable.Cell(row, 1).Range.Text = selectedComponents[row - 2].Components_type.name; // Заполнение столбца "Тип"
-                    newTable.Cell(row, 2).Range.Text = selectedComponents[row - 2].name; // Заполнение столбца "Название"
-                    newTable.Cell(row, 3).Range.Text = selectedComponents[row - 2].price.ToString(); // Заполнение столбца "ценна"
+                    SuppliesDBEntities.GetContext().SaveChanges();
+
+                    MessageBox.Show("Статус заказа сменён", "Успех", MessageBoxButton.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
                 }
             }
+            else
+                MessageBox.Show("Выберите заказ, который доставлен до клиента!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            newDoc.SaveAs(path + $@"\{order.Clients.fullName}.docx");
-
-            newDoc.Close();
-            doc.Close();
-
-            app.Quit();
-
-            MessageBox.Show("Накладная созданна на рабочем столе", "Успех", MessageBoxButton.OK);
+            UpdateTable();
         }
     }
 }

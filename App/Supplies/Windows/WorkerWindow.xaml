@@ -12,16 +12,16 @@
             <RowDefinition Height="750*"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="LightPink" Background="LightPink" CornerRadius="3" BorderThickness="1" Margin="0,-6,0,0"/>
-
+        <TextBlock HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="0" TextWrapping="Wrap" Text="Поставки комплектующих" VerticalAlignment="Center"/>
         <Menu VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Grid.Row="0" Background="LightPink" Margin="0,0,0,0">
             <MenuItem Header="Клиенты" Click="GoTo_Clients"/>
             <MenuItem Header="Заказы" Click="GoTo_Orders"/>
             <MenuItem Header="Компоненты" Click="GoTo_Components"/>
             <MenuItem Header="Поставщики" Click="GoTo_Supplies"/>
         </Menu>
-        <Button Content="Выход" Click="GoTo_Auth" Margin="0,0,20,0" Width="70" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Button Content="Выход" Click="GoTo_Auth" Margin="0,0,20,0" Grid.Row="0" Width="70" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
-            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
 
     </Grid>
 </Window>

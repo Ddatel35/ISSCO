@@ -29,7 +29,7 @@ namespace Supplies
                     return "В пути";
                 if (intValue == 2)
                     return "Доставка до клиента";
-                if (intValue == 2)
+                if (intValue == 3)
                     return "У клиента";
             }
 

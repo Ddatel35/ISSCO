@@ -17,6 +17,7 @@
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" TextWrapping="Wrap" Text="Заказы" VerticalAlignment="Center" Height="18"/>
         <DataGrid x:Name="DGrid" Grid.Row="1" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="№ Заказа" Width="85"/>
                 <DataGridTextColumn Binding="{Binding Clients.fullName}" Header="ФИО клиента" Width="*"/>
                 <DataGridTextColumn Binding="{Binding createDate, StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" Header="Дата создания" Width="*"/>
                 <DataGridTextColumn Binding="{Binding deliveryDate, StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" Header="Дата доставки" Width="*"/>

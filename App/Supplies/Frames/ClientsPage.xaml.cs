@@ -37,6 +37,7 @@ namespace Supplies.Frames
         {
             AddNewClientWindow ANCW = new AddNewClientWindow(null);
             ANCW.ShowDialog();
+            UpdateTable();
         }
 
         private void Edit_Client(object sender, RoutedEventArgs e)

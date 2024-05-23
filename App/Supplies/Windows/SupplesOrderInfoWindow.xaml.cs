@@ -50,13 +50,13 @@ namespace Supplies.Windows
                 try
                 {
                     SuppliesDBEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Статус заказа сменён", "Успех", MessageBoxButton.OK);
+                    Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
-
-                MessageBox.Show("Статус заказа сменён", "Успех", MessageBoxButton.OK);
             }
         }
     }
