@@ -2,5 +2,8 @@
 
 ~ID_Order~ метка ID заказа, тоесть его номер
 ~FullName_Customer~ метка ФИО заказчика
+~PhoneNum_Customer~ метка номера телефона заказчика
+~Customer_Addres~ метка адреса доставки
+~Delivery_Date~ метка даты доставки
 ~Order_Table~ метка даты доставки к клиенту
 ~Full_Price~ метка полной стоимости заказа
