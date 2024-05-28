@@ -26,8 +26,12 @@ namespace Supplies.Windows
         public SupplesOrderInfoWindow(string checkCode, int order_ID)
         {
             InitializeComponent();
-
+            
             ID = order_ID;
+
+            Orders order = SuppliesDBEntities.GetContext().Orders.Find(ID);
+            deliveryDate.SelectedDate = order.deliveryDate;
+
             long checkCodeL = Convert.ToInt64(checkCode);
             var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
 
@@ -45,6 +49,10 @@ namespace Supplies.Windows
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Orders order = SuppliesDBEntities.GetContext().Orders.Find(ID);
+
+                if (deliveryDate.SelectedDate != order.deliveryDate)
+                    order.deliveryDate = deliveryDate.SelectedDate;
+
                 order.orderStatus = 1;
 
                 try

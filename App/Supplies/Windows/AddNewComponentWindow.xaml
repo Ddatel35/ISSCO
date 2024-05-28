@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Supplies.Windows"
         mc:Ignorable="d"
-        Title="Добавить комплектующие" Height="325" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Комплектующее" Height="325" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -20,7 +20,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="0,0,0,0" TextWrapping="Wrap" Text="Добавление нового комплектующего" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="0"/>
+        <TextBlock x:Name="titleH" Margin="0,0,0,0" TextWrapping="Wrap" Text="Добавление нового комплектующего" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="0"/>
 
         <TextBlock TextWrapping="Wrap" Text="Поставщик" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
         <ComboBox x:Name="SuppCB" Width="200" SelectedItem="{Binding Supplies}" DisplayMemberPath="name" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"/>

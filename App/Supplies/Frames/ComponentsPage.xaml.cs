@@ -54,7 +54,7 @@ namespace Supplies.Frames
                 ANCW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите редактируемый компонент!");
+                MessageBox.Show("Выберите редактируемый компонент!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
         }
@@ -85,7 +85,7 @@ namespace Supplies.Frames
                             SuppliesDBEntities.GetContext().Components.Remove(rem);
                         }
                         SuppliesDBEntities.GetContext().SaveChanges();
-                        MessageBox.Show("Данные удаленны");
+                        MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
                     catch (Exception ex)

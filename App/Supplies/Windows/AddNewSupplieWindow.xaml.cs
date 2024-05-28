@@ -29,6 +29,7 @@ namespace Supplies.Windows
             {
                 _currentSupply = currentSupply;
                 AddBtn.Content = "Сохранить";
+                titleH.Text = "Редактирование поставщика";
             }
             DataContext = _currentSupply;
         }
@@ -47,7 +48,7 @@ namespace Supplies.Windows
 
             if (Errors.Length > 0)
             {
-                MessageBox.Show(Errors.ToString(), "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Errors.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -60,7 +61,7 @@ namespace Supplies.Windows
             try
             {
                 SuppliesDBEntities.GetContext().SaveChanges();
-                MessageBox.Show("Поставщик сохранён");
+                MessageBox.Show("Поставщик сохранён", "Успех", MessageBoxButton.OK);
                 Close();
             }
             catch (DbEntityValidationException ex)

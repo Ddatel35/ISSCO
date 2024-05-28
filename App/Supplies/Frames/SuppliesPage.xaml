@@ -12,10 +12,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="650*"/>
-            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" TextWrapping="Wrap" Text="Поставщики" VerticalAlignment="Center" Height="18"/>
-        <DataGrid x:Name="DGrid" Grid.Row="1" Margin="5,0,5,0" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="DGrid" Grid.Row="1" Margin="5,0,5,5" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="*"/>
                 <DataGridTextColumn Binding="{Binding address}" Header="Адрес" Width="*"/>

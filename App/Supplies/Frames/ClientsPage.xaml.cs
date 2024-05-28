@@ -48,7 +48,7 @@ namespace Supplies.Frames
                 ANCW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите редактируемого клиенита!");
+                MessageBox.Show("Выберите редактируемого клиенита!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
         }
@@ -79,7 +79,7 @@ namespace Supplies.Frames
                             SuppliesDBEntities.GetContext().Clients.Remove(rem);
                         }
                         SuppliesDBEntities.GetContext().SaveChanges();
-                        MessageBox.Show("Данные удаленны");
+                        MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
                     catch (Exception ex)
@@ -90,7 +90,7 @@ namespace Supplies.Frames
             }
             else
             {
-                MessageBox.Show("Выберите удаляемоого руководителя!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите удаляемоого руководителя!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

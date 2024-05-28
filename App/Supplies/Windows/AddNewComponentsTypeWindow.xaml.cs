@@ -36,7 +36,7 @@ namespace Supplies.Windows
 
             if (Errors.Length > 0)
             {
-                MessageBox.Show(Errors.ToString(), "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Errors.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace Supplies.Windows
             try
             {
                 SuppliesDBEntities.GetContext().SaveChanges();
-                MessageBox.Show("Тип комплектующего сохранён");
+                MessageBox.Show("Тип комплектующего сохранён", "Успех", MessageBoxButton.OK);
                 Close();
             }
             catch (DbEntityValidationException ex)

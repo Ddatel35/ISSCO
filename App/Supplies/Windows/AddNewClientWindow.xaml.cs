@@ -30,6 +30,7 @@ namespace Supplies.Windows
             {
                 _currentClient = selectedClient;
                 AddBtn.Content = "Сохранить";
+                titleH.Text = "Редактирование клиента";
             }
 
             DataContext = _currentClient;
@@ -47,7 +48,7 @@ namespace Supplies.Windows
 
             if (Errors.Length > 0)
             {
-                MessageBox.Show(Errors.ToString(), "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Errors.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -60,7 +61,7 @@ namespace Supplies.Windows
             try
             {
                 SuppliesDBEntities.GetContext().SaveChanges();
-                MessageBox.Show("Клиент сохранён");
+                MessageBox.Show("Клиент сохранён", "Успех", MessageBoxButton.OK);
                 Close();
             }
             catch (DbEntityValidationException ex)

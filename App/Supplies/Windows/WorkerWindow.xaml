@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Border BorderBrush="LightPink" Background="LightPink" CornerRadius="3" BorderThickness="1" Margin="0,-6,0,0"/>
         <TextBlock HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="0" TextWrapping="Wrap" Text="Поставки комплектующих" VerticalAlignment="Center"/>
-        <Menu VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Grid.Row="0" Background="LightPink" Margin="0,0,0,0">
+        <Menu x:Name="menu" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Grid.Row="0" Background="LightPink" Margin="0,0,0,0">
             <MenuItem Header="Клиенты" Click="GoTo_Clients"/>
             <MenuItem Header="Заказы" Click="GoTo_Orders"/>
             <MenuItem Header="Компоненты" Click="GoTo_Components"/>

@@ -19,6 +19,7 @@ using Word = Microsoft.Office.Interop.Word;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Data.Entity.Validation;
+using System.Threading;
 
 namespace Supplies.Frames
 {
@@ -36,8 +37,8 @@ namespace Supplies.Frames
                 AddBtn.Visibility = Visibility.Hidden;
                 AboBtn.Visibility = Visibility.Hidden;
                 DelBtn.Visibility = Visibility.Hidden;
+                OrdBtn.Visibility = Visibility.Hidden;
 
-                OrdBtn.Visibility = Visibility.Visible;
                 InvBtn.Visibility = Visibility.Visible;
                 DelivBtn.Visibility = Visibility.Visible;
             }
@@ -54,7 +55,7 @@ namespace Supplies.Frames
 
         private void Add_Order(object sender, RoutedEventArgs e)
         {
-            AddNewOrderWindow ANOW = new AddNewOrderWindow(null);
+            AddNewOrderWindow ANOW = new AddNewOrderWindow();
             ANOW.ShowDialog();
             UpdateTable();
         }
@@ -108,21 +109,10 @@ namespace Supplies.Frames
                         MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
-                    catch (DbEntityValidationException ex)
-                    {
-                        foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
-                        {
-                            MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
-                            foreach (DbValidationError err in validationError.ValidationErrors)
-                            {
-                                MessageBox.Show(err.ErrorMessage + "");
-                            }
-                        }
-                    }
-                    /*catch (Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message.ToString());
-                    }*/
+                    }
                 }
             }
             else
@@ -139,7 +129,7 @@ namespace Supplies.Frames
 
                 if (order.orderStatus != 0)
                 {
-                    MessageBox.Show("Статус заказа можно сменить только у заказов которые не заказанны!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Статус заказа можно сменить только у заказов которые не заказанныx!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -178,89 +168,95 @@ namespace Supplies.Frames
                     MessageBox.Show(ex.Message.ToString());
                 }
 
-                try
-                {
-                    List<Components> selectedComponents = new List<Components>();
-
-                    string[] textsToFind = { "~ID_Order~", "~FullName_Customer~", "~Delivery_Date~", "~Full_Price~" };
-                    string[] replacements = { order.ID.ToString(), order.Clients.fullName, order.deliveryDate.ToString().Remove(10), order.fullPrice.ToString() };
-                    string[] columsName = { "Тип", "Название", "Цена" };
-
-                    DateTime date = DateTime.ParseExact(order.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                    string formattedDate = date.ToString("ddMMyyyyHHmm");
-
-                    string checkCode = Convert.ToInt64(order.ID) + formattedDate;
-                    long checkCodeL = Convert.ToInt64(checkCode);
-
-                    var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
-
-                    foreach (var component in components)
-                    {
-                        selectedComponents.Add(SuppliesDBEntities.GetContext().Components.FirstOrDefault(i => i.ID == component.components_ID));
-                    }
-
-                    var app = new Word.Application();
-                    app.Visible = false;
-
-                    Word.Document doc = app.Documents.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Templates\Invoice.docx");
-                    Word.Document newDoc = app.Documents.Add();
-                    newDoc.Content.FormattedText = doc.Content.FormattedText;
-
-                    for (int i = 0; i < textsToFind.Length; i++)
-                    {
-                        Word.Find find = app.Selection.Find;
-                        find.Text = textsToFind[i];
-                        find.Replacement.Text = replacements[i];
-                        find.Execute(Replace: Word.WdReplace.wdReplaceAll);
-                    }
-
-                    Word.Find findT = app.Selection.Find;
-                    findT.Text = "~Order_Table~";
-                    findT.Execute();
-
-                    app.Selection.ClearFormatting();
-
-                    if (findT.Found)
-                    {
-                        Word.Range range = app.Selection.Range;
-                        Word.Table newTable = newDoc.Tables.Add(range, selectedComponents.Count + 1, 3);
-                        newTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внутренних границ
-                        newTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внешних границ
-
-                        // Заполнение заголовков таблицы
-                        for (int i = 0; i < columsName.Count(); i++)
-                        {
-                            newTable.Cell(1, i + 1).Range.Text = columsName[i];
-                        }
-
-                        for (int row = 2; row <= selectedComponents.Count + 1; row++)
-                        {
-                            newTable.Cell(row, 1).Range.Text = selectedComponents[row - 2].Components_type.name; // Заполнение столбца "Тип"
-                            newTable.Cell(row, 2).Range.Text = selectedComponents[row - 2].name; // Заполнение столбца "Название"
-                            newTable.Cell(row, 3).Range.Text = selectedComponents[row - 2].price.ToString(); // Заполнение столбца "ценна"
-                        }
-                    }
-
-                    string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-                    newDoc.SaveAs(path + $@"\{order.Clients.fullName}.docx");
-
-                    newDoc.Close();
-                    doc.Close();
-
-                    app.Quit();
-
-                    MessageBox.Show("Статус заказа сменён и созданна накладная на рабочем столе", "Успех", MessageBoxButton.OK);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+                Thread generatingReport = new Thread(() => Generate_Report(order));
+                generatingReport.Start();
             }
             else
                 MessageBox.Show("Выберите заказ, который пришёл!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
+        }
+
+        void Generate_Report(Orders order)
+        {
+            try
+            {
+                List<Components> selectedComponents = new List<Components>();
+
+                string[] textsToFind = { "~ID_Order~", "~FullName_Customer~", "~PhoneNum_Customer~", "~Customer_Addres~", "~Delivery_Date~", "~Full_Price~" };
+                string[] replacements = { order.ID.ToString(), order.Clients.fullName, order.Clients.phoneNumber.ToString(), order.Clients.address, order.deliveryDate.ToString().Remove(10), order.fullPrice.ToString() };
+                string[] columsName = { "Тип", "Название", "Цена" };
+
+                DateTime date = DateTime.ParseExact(order.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                string formattedDate = date.ToString("ddMMyyyyHHmm");
+
+                string checkCode = Convert.ToInt64(order.ID) + formattedDate;
+                long checkCodeL = Convert.ToInt64(checkCode);
+
+                var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
+
+                foreach (var component in components)
+                {
+                    selectedComponents.Add(SuppliesDBEntities.GetContext().Components.FirstOrDefault(i => i.ID == component.components_ID));
+                }
+
+                var app = new Word.Application();
+                app.Visible = false;
+
+                Word.Document doc = app.Documents.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Templates\Invoice.docx");
+                Word.Document newDoc = app.Documents.Add();
+                newDoc.Content.FormattedText = doc.Content.FormattedText;
+
+                for (int i = 0; i < textsToFind.Length; i++)
+                {
+                    Word.Find find = app.Selection.Find;
+                    find.Text = textsToFind[i];
+                    find.Replacement.Text = replacements[i];
+                    find.Execute(Replace: Word.WdReplace.wdReplaceAll);
+                }
+
+                Word.Find findT = app.Selection.Find;
+                findT.Text = "~Order_Table~";
+                findT.Execute();
+
+                app.Selection.ClearFormatting();
+
+                if (findT.Found)
+                {
+                    Word.Range range = app.Selection.Range;
+                    Word.Table newTable = newDoc.Tables.Add(range, selectedComponents.Count + 1, 3);
+                    newTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внутренних границ
+                    newTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle; // Устанавливаем стиль линии для внешних границ
+
+                    // Заполнение заголовков таблицы
+                    for (int i = 0; i < columsName.Count(); i++)
+                    {
+                        newTable.Cell(1, i + 1).Range.Text = columsName[i];
+                    }
+
+                    for (int row = 2; row <= selectedComponents.Count + 1; row++)
+                    {
+                        newTable.Cell(row, 1).Range.Text = selectedComponents[row - 2].Components_type.name; // Заполнение столбца "Тип"
+                        newTable.Cell(row, 2).Range.Text = selectedComponents[row - 2].name; // Заполнение столбца "Название"
+                        newTable.Cell(row, 3).Range.Text = selectedComponents[row - 2].price.ToString(); // Заполнение столбца "ценна"
+                    }
+                }
+
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                newDoc.SaveAs(path + $@"\{order.Clients.fullName}.docx");
+
+                newDoc.Close();
+                doc.Close();
+
+                app.Quit();
+
+                MessageBox.Show("Статус заказа сменён и созданна накладная на рабочем столе", "Успех", MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void Test_Method(object sender, RoutedEventArgs e)

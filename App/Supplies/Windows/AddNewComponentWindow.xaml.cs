@@ -29,6 +29,7 @@ namespace Supplies.Windows
             {
                 _currenteComponents = selectedComponents;
                 AddBtn.Content = "Сохранить";
+                titleH.Text = "Редактирование комплектующего";
             }
 
             DataContext = _currenteComponents;

@@ -27,14 +27,9 @@ namespace Supplies.Windows
         List<Components> selectedComponents = new List<Components>();
 
         int fullPrice = 1500;
-        public AddNewOrderWindow(Orders selectedOrder)
+        public AddNewOrderWindow()
         {
             InitializeComponent();
-
-            if (selectedOrder != null)
-            {
-                _currentOrder = selectedOrder;
-            }
 
             fullNCB.ItemsSource = SuppliesDBEntities.GetContext().Clients.ToList();
             compTypeCB.ItemsSource = SuppliesDBEntities.GetContext().Components_type.ToList();

@@ -48,7 +48,7 @@ namespace Supplies.Frames
                 ANSW.ShowDialog();
             }
             else
-                MessageBox.Show("Выберите удаляемого поставщика!");
+                MessageBox.Show("Выберите удаляемого поставщика!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             UpdateTable();
         }
@@ -79,7 +79,7 @@ namespace Supplies.Frames
                             SuppliesDBEntities.GetContext().Supplies.Remove(rem);
                         }
                         SuppliesDBEntities.GetContext().SaveChanges();
-                        MessageBox.Show("Данные удаленны");
+                        MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
                     catch (Exception ex)
@@ -90,7 +90,7 @@ namespace Supplies.Frames
             }
             else
             {
-                MessageBox.Show("Выберите удаляемого поставщика!", "Вниманеие", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите удаляемого поставщика!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

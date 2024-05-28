@@ -64,7 +64,7 @@ namespace Supplies.Windows
                             SuppliesDBEntities.GetContext().Components_type.Remove(rem);
                         }
                         SuppliesDBEntities.GetContext().SaveChanges();
-                        MessageBox.Show("Данные удаленны");
+                        MessageBox.Show("Данные удаленны", "Успех", MessageBoxButton.OK);
                         UpdateTable();
                     }
                     catch (Exception ex)

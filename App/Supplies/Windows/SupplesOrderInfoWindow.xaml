@@ -7,7 +7,16 @@
         mc:Ignorable="d"
         Title="Поставщики" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="DGrid" Margin="5,94,5,10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" TextWrapping="Wrap" Text="Информация о заказе" VerticalAlignment="Center" Height="18"/>
+
+        <DatePicker x:Name="deliveryDate" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150"/>
+
+            <DataGrid x:Name="DGrid" Margin="5,0,5,5" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Components_type.name}" Header="Тип" Width="150"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="Название" Width="*"/>
@@ -17,6 +26,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="OrdBtn" Content="Заказать" Click="Change_Order_Status" Width="85" Margin="0,32,23,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Button x:Name="OrdBtn" Content="Заказать" Click="Change_Order_Status" Width="85" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0"/>
     </Grid>
 </Window>

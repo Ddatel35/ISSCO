@@ -26,6 +26,10 @@ namespace Supplies.Windows
         public WorkerWindow()
         {
             InitializeComponent();
+
+            if (MainWindow.Globals.Access == 2)
+                menu.Visibility = Visibility.Hidden;
+
             MainFrame.Navigate(new OrdersPage());
             Manager.MainFrame = MainFrame;
         }
