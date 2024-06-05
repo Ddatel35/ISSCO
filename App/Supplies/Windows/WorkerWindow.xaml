@@ -11,15 +11,16 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="750*"/>
         </Grid.RowDefinitions>
-        <Border BorderBrush="LightPink" Background="LightPink" CornerRadius="3" BorderThickness="1" Margin="0,-6,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="0" TextWrapping="Wrap" Text="Поставки комплектующих" VerticalAlignment="Center"/>
-        <Menu x:Name="menu" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Grid.Row="0" Background="LightPink" Margin="0,0,0,0">
+        <Border BorderBrush="LightGreen" Background="LightGreen" CornerRadius="3" BorderThickness="1" Margin="0,-6,0,0"/>
+        <Image Source="\Image\Logo.png" HorizontalAlignment="Left" Height="40" Margin="20,0,0,0" VerticalAlignment="Center" Width="40"/>
+        <TextBlock HorizontalAlignment="Left" Margin="70,0,0,0" Grid.Row="0" TextWrapping="Wrap" Text="Поставки комплектующих" VerticalAlignment="Center"/>
+        <Menu x:Name="menu" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Grid.Row="0" Background="LightGreen" Margin="0,0,0,0">
             <MenuItem Header="Клиенты" Click="GoTo_Clients"/>
             <MenuItem Header="Заказы" Click="GoTo_Orders"/>
             <MenuItem Header="Компоненты" Click="GoTo_Components"/>
             <MenuItem Header="Поставщики" Click="GoTo_Supplies"/>
         </Menu>
-        <Button Content="Выход" Click="GoTo_Auth" Margin="0,0,20,0" Grid.Row="0" Width="70" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Button Content="Выход" Click="GoTo_Auth" Margin="0,0,20,0" Grid.Row="0" Width="70" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Red" BorderBrush="DarkRed" Foreground="White"/>
 
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"/>
 

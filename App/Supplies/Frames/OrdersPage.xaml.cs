@@ -38,9 +38,11 @@ namespace Supplies.Frames
                 AboBtn.Visibility = Visibility.Hidden;
                 DelBtn.Visibility = Visibility.Hidden;
                 OrdBtn.Visibility = Visibility.Hidden;
+                CancelBtn.Visibility = Visibility.Hidden;
 
                 InvBtn.Visibility = Visibility.Visible;
                 DelivBtn.Visibility = Visibility.Visible;
+                AboBtn2.Visibility = Visibility.Visible;
             }
 
             IntToStringConv converter = new IntToStringConv();
@@ -55,7 +57,7 @@ namespace Supplies.Frames
 
         private void Add_Order(object sender, RoutedEventArgs e)
         {
-            AddNewOrderWindow ANOW = new AddNewOrderWindow();
+            AddNewOrderWindow ANOW = new AddNewOrderWindow(null, null);
             ANOW.ShowDialog();
             UpdateTable();
         }
@@ -73,6 +75,55 @@ namespace Supplies.Frames
             }
             else
                 MessageBox.Show("Выберите заказ, информацию о котором хотите посмотреть!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private void Edit_Order(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                Orders order = DGrid.SelectedItem as Orders;
+
+                if (order.orderStatus == 0)
+                {
+                    DateTime date = DateTime.ParseExact(order.createDate.ToString(), "dd.MM.yyyy H:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                    string formattedDate = date.ToString("ddMMyyyyHHmm");
+                    string checkCode = Convert.ToInt64(order.ID) + formattedDate;
+                    AddNewOrderWindow ANOW = new AddNewOrderWindow(order, checkCode);
+                    ANOW.ShowDialog();
+                    UpdateTable();
+                }
+                else
+                {
+                    MessageBox.Show("Изменять можно только не заказанные заказы!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+                MessageBox.Show("Выберите заказ, который хотите редактировать!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void Cancel_Order(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                var selected = DGrid.SelectedItem as Orders;
+
+                if (selected.orderStatus == 4)
+                {
+                    MessageBox.Show("Заказ уже отменён!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                selected.orderStatus = 4;
+
+                SuppliesDBEntities.GetContext().SaveChanges();
+
+                MessageBox.Show("Заказ отменён", "Успех", MessageBoxButton.OK);
+
+                UpdateTable();
+            }
+            else
+            {
+                MessageBox.Show("Выберите заказ который хотите отменить!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void Del_Order(object sender, RoutedEventArgs e)
@@ -244,7 +295,7 @@ namespace Supplies.Frames
 
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-                newDoc.SaveAs(path + $@"\{order.Clients.fullName}.docx");
+                newDoc.SaveAs(path + $@"\Заказ № {order.ID}.docx");
 
                 newDoc.Close();
                 doc.Close();

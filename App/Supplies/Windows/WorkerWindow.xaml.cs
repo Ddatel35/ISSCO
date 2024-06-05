@@ -30,7 +30,16 @@ namespace Supplies.Windows
             if (MainWindow.Globals.Access == 2)
                 menu.Visibility = Visibility.Hidden;
 
-            MainFrame.Navigate(new OrdersPage());
+            if (MainWindow.Globals.Access == 3)
+            {
+                menu.Visibility = Visibility.Hidden;
+                MainFrame.Navigate(new UsersPage());
+            }
+            else
+            {
+                MainFrame.Navigate(new OrdersPage());
+            }
+
             Manager.MainFrame = MainFrame;
         }
 

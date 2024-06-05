@@ -36,5 +36,6 @@
         <TextBlock x:Name="fullPriceTB" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="3" Margin="0,6,50,0" HorizontalAlignment="Right"/>
 
         <Button x:Name="AddBtn" Content="Добавить" Click="Add_Order" Width="80" Margin="0,4,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="3"/>
+        <Button x:Name="DelBtn" Content="Удалить" Click="Dell_Order" Width="94" Margin="0,39,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="2"/>
     </Grid>
 </Window>

@@ -90,7 +90,7 @@ namespace Supplies.Frames
             }
             else
             {
-                MessageBox.Show("Выберите удаляемоого руководителя!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите удаляемого клиента!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

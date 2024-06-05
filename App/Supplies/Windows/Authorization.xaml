@@ -14,8 +14,8 @@
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
 
-        <Image HorizontalAlignment="Left" Height="46" Margin="65,9,0,0" VerticalAlignment="Top" Width="55"/>
-        <TextBlock HorizontalAlignment="Left" Margin="250,0,0,0" TextWrapping="Wrap" Text="Поставки комплектующих" VerticalAlignment="Center"/>
+        <Image Source="\Image\Logo.png" HorizontalAlignment="Left" Height="50" Margin="48,0,0,0" VerticalAlignment="Center" Width="50"/>
+        <TextBlock HorizontalAlignment="Left" Margin="250,0,0,0" TextWrapping="Wrap" Text="ИС Поставки комплектующих" VerticalAlignment="Center"/>
 
         <TextBox x:Name="loginTxb" HorizontalAlignment="Center" Margin="0,32,0,0" Grid.Row="1" TextWrapping="Wrap" Width="428" Height="21" VerticalAlignment="Top"/>
         <TextBlock Margin="0,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Логин" HorizontalAlignment="Center" Width="41" Height="16" VerticalAlignment="Top"/>

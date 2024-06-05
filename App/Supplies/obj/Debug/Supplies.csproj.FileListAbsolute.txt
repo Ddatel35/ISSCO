@@ -49,3 +49,7 @@ C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\OrderDetailsW
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\SupplesOrderInfoWindow.g.cs
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\SupplesOrderInfoWindow.baml
 C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Supplies.csproj.ResolveComReference.cache
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\UsersPage.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewUserWindow.g.cs
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Frames\UsersPage.baml
+C:\Users\shume\Desktop\Диплом\App\Supplies\obj\Debug\Windows\AddNewUserWindow.baml

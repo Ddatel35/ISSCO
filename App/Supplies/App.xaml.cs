@@ -31,6 +31,8 @@ namespace Supplies
                     return "Доставка до клиента";
                 if (intValue == 3)
                     return "У клиента";
+                if (intValue == 4)
+                    return "Отмененно";
             }
 
             return value.ToString();

@@ -26,10 +26,14 @@
         </DataGrid>
 
         <Button x:Name="DelBtn" Grid.Row="0" Content="Удалить" Click="Del_Order" Width="75" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <Button x:Name="AboBtn" Content="Подробнее" Click="About_Order" Margin="0,0,95,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="EditBtn" Content="Изменить" Click="Edit_Order" Margin="0,0,95,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="90"/>
         <Button x:Name="AddBtn" Grid.Row="0" Content="Добавить" Click="Add_Order" Width="85" Margin="0,0,195,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <Button x:Name="OrdBtn" Grid.Row="0" Content="Заказать" Click="Supplies_Info_Order" Width="85" Margin="0,0,290,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="CancelBtn" Content="Отменить" Click="Cancel_Order" Width="100" Margin="0,0,290,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button x:Name="AboBtn" Content="Подробнее" Click="About_Order" Margin="0,0,400,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="OrdBtn" Grid.Row="0" Content="Заказать" Click="Supplies_Info_Order" Width="85" Margin="0,0,500,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        
         <Button x:Name="InvBtn" Content="Офомление накладной" Click="Change_Order_Status" Width="180" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Hidden"/>
         <Button x:Name="DelivBtn" Content="Доставленно" Click="Test_Method" Width="100" Margin="0,0,200,0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Hidden"/>
+        <Button x:Name="AboBtn2" Content="Подробнее" Click="About_Order" Margin="0,0,310,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="90" Visibility="Hidden"/>
     </Grid>
 </Page>

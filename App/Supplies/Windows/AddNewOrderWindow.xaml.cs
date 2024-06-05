@@ -27,9 +27,27 @@ namespace Supplies.Windows
         List<Components> selectedComponents = new List<Components>();
 
         int fullPrice = 1500;
-        public AddNewOrderWindow()
+        long orderCode;
+        public AddNewOrderWindow(Orders order ,string checkCode)
         {
             InitializeComponent();
+
+            if (checkCode != null)
+            {
+                _currentOrder = order;
+                long checkCodeL = Convert.ToInt64(checkCode);
+                orderCode = checkCodeL;
+                var components = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == checkCodeL).ToList();
+
+                foreach (var component in components)
+                {
+                    var comp = SuppliesDBEntities.GetContext().Components.FirstOrDefault(i => i.ID == component.components_ID);
+                    selectedComponents.Add(comp);
+                    fullPrice += comp.price;
+                }
+
+                Update_Table();
+            }
 
             fullNCB.ItemsSource = SuppliesDBEntities.GetContext().Clients.ToList();
             compTypeCB.ItemsSource = SuppliesDBEntities.GetContext().Components_type.ToList();
@@ -57,7 +75,28 @@ namespace Supplies.Windows
 
                 fullPrice = fullPrice + (compCB.SelectedValue as Components).price;
 
+                compCB.SelectedIndex = -1;
+
                 Update_Table();
+            }
+        }
+
+        private void Dell_Order(object sender, RoutedEventArgs e)
+        {
+            if (DGrid.SelectedItem != null)
+            {
+                var Removing = DGrid.SelectedItems.Cast<Components>().ToList();
+
+                foreach (var remove in Removing)
+                {
+                    selectedComponents.Remove(remove);
+                }
+
+                Update_Table();
+            }
+            else
+            {
+                MessageBox.Show("Выберите удаляемый компонент", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -69,6 +108,18 @@ namespace Supplies.Windows
 
         private void Add_Order(object sender, RoutedEventArgs e)
         {
+            StringBuilder Errors = new StringBuilder();
+            if (fullNCB.SelectedValue == null)
+                Errors.AppendLine("Выберите клиента!");
+            if (selectedComponents.Count == 0)
+                Errors.AppendLine("Нельзя создать пустой заказ!");
+
+            if (Errors.Length != 0)
+            {
+                MessageBox.Show(Errors.ToString(), "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             int deliveryDate = 0;
 
             for (int i = 0; i < selectedComponents.Count; i++)
@@ -77,13 +128,16 @@ namespace Supplies.Windows
                     deliveryDate = selectedComponents[i].Supplies.deliveryTime;
             }
 
-            _currentOrder.createDate = DateTime.Now;
             _currentOrder.deliveryDate = DateTime.Now.AddDays(deliveryDate);
             _currentOrder.fullPrice = fullPrice + 1500;
-            _currentOrder.orderStatus = 0;
-
-            SuppliesDBEntities.GetContext().Orders.Add(_currentOrder);
-
+            
+            if (_currentOrder.ID == 0)
+            {
+                _currentOrder.createDate = DateTime.Now;
+                _currentOrder.orderStatus = 0;
+                SuppliesDBEntities.GetContext().Orders.Add(_currentOrder);
+            }
+            
             try
             {
                 SuppliesDBEntities.GetContext().SaveChanges();
@@ -103,18 +157,35 @@ namespace Supplies.Windows
             string code = Convert.ToString(_currentOrder.ID) + DateTime.Now.ToString("ddMMyyyyHHmm");
             int order_ID = _currentOrder.ID;
 
+            var check = SuppliesDBEntities.GetContext().Ordered_components.Where(c => c.checkCode == orderCode);
+
+            if (check != null)
+            {
+                foreach (var che in check)
+                {
+                    SuppliesDBEntities.GetContext().Ordered_components.Remove(che);
+                }
+            }
+
             for (int i = 0; i < selectedComponents.Count; i++)
             {
+
                 _orderedComponents.components_ID = selectedComponents[i].ID;
                 _orderedComponents.orders_ID = order_ID;
-                _orderedComponents.checkCode = Convert.ToInt64(code);
+                if (orderCode != 0)
+                {
+                    _orderedComponents.checkCode = orderCode;
+                }
+                else
+                {
+                    _orderedComponents.checkCode = Convert.ToInt64(code);
+                }
+
                 SuppliesDBEntities.GetContext().Ordered_components.Add(_orderedComponents);
 
                 try
                 {
                     SuppliesDBEntities.GetContext().SaveChanges();
-                    MessageBox.Show("Заказ сохранён", "Успех", MessageBoxButton.OK);
-                    Close();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -128,6 +199,9 @@ namespace Supplies.Windows
                     }
                 }
             }
+
+            MessageBox.Show("Заказ сохранён", "Успех", MessageBoxButton.OK);
+            Close();
         }
     }
 }
